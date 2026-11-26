@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f5f1e7">
+<title>Know Better | Everyday health skills</title>
+<style>
+:root{
+  --ink:#18354b;--ink-2:#345267;--muted:#718391;--teal:#287f79;--teal-dark:#206b66;
+  --teal-pale:#e9f3f0;--blue-pale:#edf3f7;--paper:#fff;--canvas:#f6f8f7;
+  --line:#e2e9e7;--gold:#b27b35;--gold-pale:#f8f1e6;--red:#a54d4d;
+  --shadow:0 12px 34px rgba(24,53,75,.07);--radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--canvas);color:var(--ink-2);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid #8dc8c1;outline-offset:3px}
+button:disabled{cursor:not-allowed;opacity:.58}
+.topbar{height:74px;position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 max(5vw,22px)}
+.brand{display:flex;align-items:center;gap:11px;border:0;background:none;color:var(--ink);font-size:21px;font-weight:780;letter-spacing:-.8px;padding:5px}
+.brand-mark{width:35px;height:35px;border-radius:11px;background:var(--ink);display:grid;place-items:center;color:#fff}
+.brand-mark svg{width:20px;height:20px}
+.brand span span{color:var(--teal)}
+.nav{display:flex;align-items:center;gap:4px}
+.nav-btn{border:0;background:transparent;color:#637786;padding:10px 12px;border-radius:10px;font-size:12px;font-weight:650;transition:background .2s,color .2s,transform .2s}
+.nav-btn:hover{background:#f0f5f3;color:var(--ink)}
+.nav-btn.active{background:var(--teal-pale);color:var(--teal-dark)}
+.menu-toggle{display:none;border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px;color:var(--ink)}
+main{min-height:70vh}
+.page{display:none;animation:pageIn .34s ease both}
+.page.active{display:block}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.wrap{width:min(1120px,88%);margin:auto}
+.hero{background:linear-gradient(115deg,#eaf3f1 0%,#f2f6f8 65%,#edf3f5 100%);padding:66px 0 58px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.eyebrow{font-size:10px;letter-spacing:1.55px;font-weight:800;color:var(--teal);text-transform:uppercase}
+h1,h2,h3,p{margin-top:0}
+.hero h1{font-size:clamp(42px,5.3vw,64px);line-height:1.08;letter-spacing:-2.6px;color:var(--ink);margin:14px 0 18px;max-width:600px}
+.hero h1 em{font-style:normal;color:var(--teal)}
+.lead{font-size:15px;color:#637987;max-width:510px;line-height:1.85;margin-bottom:25px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn{border:1px solid transparent;border-radius:11px;padding:12px 17px;font-size:12px;font-weight:750;transition:transform .16s ease,box-shadow .2s ease,background .2s ease,border-color .2s ease,color .2s ease;position:relative}
+.btn:active,.nav-btn:active,.answer:active,.path-card:active,.mini-card:active{transform:scale(.975)}
+.btn-primary{background:var(--ink);color:#fff;box-shadow:0 5px 12px rgba(24,53,75,.12)}
+.btn-primary:hover{background:#244c67;box-shadow:0 8px 18px rgba(24,53,75,.17);transform:translateY(-1px)}
+.btn-secondary{background:#fff;border-color:#dce7e4;color:var(--ink)}
+.btn-secondary:hover{border-color:#a9cbc4;background:#fbfdfc;transform:translateY(-1px)}
+.btn-quiet{background:transparent;color:var(--teal);padding:9px 0}
+.btn-quiet:hover{color:var(--ink);transform:translateX(2px)}
+.hero-note{font-size:11px;color:#81919a;margin-top:15px}
+.hero-art{min-height:300px;position:relative;display:grid;place-items:center}
+.art-orbit{position:absolute;width:275px;height:275px;border-radius:50%;background:#d9eae5}
+.art-card{position:relative;width:min(310px,90%);background:#fff;border:1px solid rgba(255,255,255,.8);border-radius:20px;padding:22px;box-shadow:0 22px 55px rgba(24,53,75,.12);transform:rotate(-2deg)}
+.art-top{display:flex;justify-content:space-between;align-items:center;color:#81919a;font-size:9px;letter-spacing:1px;font-weight:800}
+.art-graphic{height:145px;margin:17px 0;border-radius:14px;background:linear-gradient(135deg,#eaf4f0,#e9f0f6);display:grid;place-items:center;position:relative;overflow:hidden}
+.art-graphic:before,.art-graphic:after{content:"";position:absolute;border:1px solid rgba(40,127,121,.18);border-radius:50%;width:180px;height:180px}
+.art-graphic:after{width:125px;height:125px}
+.art-cross{width:62px;height:62px;border-radius:19px;background:var(--teal);color:#fff;display:grid;place-items:center;z-index:1;box-shadow:0 8px 20px rgba(40,127,121,.22)}
+.art-cross svg{width:33px;height:33px}
+.art-bottom strong{display:block;color:var(--ink);font-size:14px}
+.art-bottom span{font-size:11px;color:var(--muted)}
+.float-tag{position:absolute;background:#fff;border:1px solid var(--line);border-radius:30px;padding:9px 13px;box-shadow:0 7px 20px rgba(24,53,75,.08);font-size:10px;font-weight:750;color:var(--ink)}
+.tag-a{top:24px;right:0}.tag-b{bottom:24px;left:0}
+.section{padding:54px 0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:22px}
+.section-head h2{font-size:26px;letter-spacing:-.8px;color:var(--ink);margin:6px 0 4px}
+.section-head p{font-size:13px;color:var(--muted);margin:0}
+.dashboard-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:18px}
+.panel,.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 4px 15px rgba(24,53,75,.025)}
+.panel{padding:23px}
+.panel-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+.panel-title h3{font-size:15px;color:var(--ink);margin:0}
+.small-label{font-size:9px;letter-spacing:1.1px;text-transform:uppercase;font-weight:800;color:var(--muted)}
+.progress-row{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--muted);margin:10px 0 7px}
+.progress-track{height:8px;background:#edf1f0;border-radius:20px;overflow:hidden}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#287f79,#65aaa0);border-radius:20px;transition:width .65s cubic-bezier(.2,.8,.2,1)}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:19px}
+.stat{background:#f7f9f8;border-radius:12px;padding:12px}
+.stat strong{display:block;color:var(--ink);font-size:20px;letter-spacing:-.5px}
+.stat span{font-size:10px;color:var(--muted)}
+.daily-card{background:#f0f5f4;border:1px solid #e2ece8;border-radius:var(--radius);padding:23px;display:flex;flex-direction:column;align-items:flex-start}
+.daily-card h3{font-size:19px;line-height:1.3;color:var(--ink);margin:9px 0}
+.daily-card p{font-size:12px;color:#6d818d;line-height:1.7;margin-bottom:18px}
+.daily-card .btn{margin-top:auto}
+.icon-box{width:39px;height:39px;border-radius:12px;background:var(--teal-pale);display:grid;place-items:center;color:var(--teal)}
+.icon-box svg{width:20px;height:20px}
+.path-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.path-card{padding:19px;text-align:left;border:1px solid var(--line);background:#fff;border-radius:15px;transition:transform .2s,border-color .2s,box-shadow .2s;display:flex;flex-direction:column;min-height:190px}
+.path-card:hover{transform:translateY(-3px);border-color:#b8d5ce;box-shadow:var(--shadow)}
+.path-card h3{font-size:15px;color:var(--ink);margin:13px 0 5px}
+.path-card p{font-size:11px;color:var(--muted);line-height:1.65;margin-bottom:13px}
+.path-meta{display:flex;align-items:center;justify-content:space-between;margin-top:auto;font-size:10px;color:var(--teal);font-weight:750}
+.page-head{padding:53px 0 27px}
+.page-head h1{font-size:clamp(34px,4.5vw,48px);letter-spacing:-1.7px;line-height:1.15;color:var(--ink);margin:10px 0}
+.page-head p:last-child{max-width:690px;color:var(--muted);font-size:14px;line-height:1.8;margin:0}
+.content-pad{padding:0 0 70px}
+.path-list{display:grid;gap:13px}
+.path-row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:16px;padding:18px 20px;background:#fff;border:1px solid var(--line);border-radius:15px}
+.path-row h3{font-size:15px;color:var(--ink);margin:0 0 3px}
+.path-row p{font-size:11px;color:var(--muted);margin:0}
+.path-row .btn{white-space:nowrap}
+.lesson-layout{display:grid;grid-template-columns:260px 1fr;gap:18px;align-items:start}
+.lesson-sidebar{padding:17px;position:sticky;top:92px}
+.lesson-sidebar h3{font-size:13px;color:var(--ink);margin:0 0 12px}
+.lesson-link{display:block;width:100%;text-align:left;padding:10px;border:0;background:transparent;border-radius:9px;color:#637987;font-size:11px;margin:2px 0}
+.lesson-link:hover,.lesson-link.active{background:var(--teal-pale);color:var(--teal-dark)}
+.lesson-content{padding:26px;min-height:400px}
+.lesson-content h2{font-size:25px;line-height:1.25;letter-spacing:-.7px;color:var(--ink);margin:8px 0 12px}
+.lesson-content p{font-size:13px;line-height:1.85;color:#657987}
+.lesson-callout{background:#f0f5f4;border-left:3px solid var(--teal);padding:14px 16px;border-radius:0 10px 10px 0;margin:18px 0}
+.lesson-callout strong{font-size:12px;color:var(--ink)}
+.lesson-callout p{font-size:12px;margin:5px 0 0}
+.lesson-points{padding-left:20px;color:#657987;font-size:13px;line-height:1.9}
+.lesson-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+.scenario-card{max-width:800px;overflow:hidden}
+.scenario-top{background:#edf4f2;padding:13px 21px;display:flex;justify-content:space-between;gap:10px;font-size:9px;letter-spacing:1px;font-weight:800;color:var(--teal)}
+.scenario-body{padding:26px}
+.scenario-body h2{font-size:23px;color:var(--ink);margin:8px 0}
+.scenario-body>p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:20px}
+.answers{display:grid;gap:9px}
+.answer{width:100%;display:flex;align-items:flex-start;gap:12px;text-align:left;padding:13px;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--ink-2);font-size:12px;line-height:1.6;transition:border-color .18s,background .18s,transform .16s}
+.answer:hover:not(:disabled){border-color:#9dc9c0;background:#f7fbf9}
+.answer-letter{flex:0 0 27px;height:27px;border-radius:8px;background:#edf2f5;display:grid;place-items:center;color:var(--ink);font-size:11px;font-weight:800}
+.answer.correct{border-color:#80b7a7;background:#eff8f3}
+.answer.incorrect{border-color:#d9b7a9;background:#fcf5f1}
+.feedback{margin-top:16px;padding:17px;background:#f0f5f4;border-radius:12px;animation:pageIn .25s ease}
+.feedback h3{font-size:14px;color:var(--ink);margin:0 0 6px}
+.feedback p{font-size:12px;color:#5e7480;margin:0 0 13px}
+.feedback[hidden]{display:none}
+.tool-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.tool-card{padding:21px}
+.tool-card h3{font-size:15px;color:var(--ink);margin:12px 0 5px}
+.tool-card p{font-size:12px;color:var(--muted);line-height:1.7}
+.checklist{display:grid;gap:9px;margin:16px 0}
+.check-row{display:flex;gap:10px;align-items:flex-start;background:#f8faf9;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:12px;color:#536c7b}
+.check-row input{accent-color:var(--teal);margin-top:3px}
+.claim-box{padding:20px;border:1px solid var(--line);border-radius:14px;background:#fff;margin:16px 0}
+.claim-box blockquote{margin:8px 0;color:var(--ink);font-size:17px;font-weight:700;line-height:1.5}
+.choice-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.choice{padding:12px;text-align:left;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink-2);font-size:12px;transition:.18s}
+.choice:hover{border-color:#9dc9c0;background:#f7fbf9}
+.choice.selected{border-color:var(--teal);background:var(--teal-pale);color:var(--ink)}
+.result{margin-top:14px;padding:15px;border-radius:11px;background:var(--teal-pale);font-size:12px;color:var(--ink-2);line-height:1.7}
+.result[hidden]{display:none}
+.resource-note{padding:18px;background:var(--gold-pale);border:1px solid #efe4d2;border-radius:13px;color:#705b3f;margin-bottom:16px}
+.resource-note strong{font-size:12px}.resource-note p{font-size:11px;margin:4px 0 0;line-height:1.7}
+.resource-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.resource-card{padding:20px}
+.resource-card h3{font-size:15px;color:var(--ink);margin:12px 0 5px}
+.resource-card p{font-size:11px;color:var(--muted);line-height:1.7}
+.review-card{max-width:760px;padding:25px}
+.review-card h2{font-size:20px;color:var(--ink);margin:9px 0}
+.review-options{display:grid;gap:9px;margin:18px 0}
+.review-option{padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;text-align:left;color:var(--ink-2);font-size:12px}
+.review-option:hover{border-color:#9dc9c0;background:#f7fbf9}
+.review-option.chosen{border-color:var(--teal);background:var(--teal-pale)}
+.review-progress{height:6px;background:#edf1f0;border-radius:20px;margin:14px 0 22px;overflow:hidden}
+.review-progress span{display:block;height:100%;background:var(--teal);transition:width .3s}
+.empty-state{padding:24px;text-align:center;background:#fff;border:1px dashed #cbd8d5;border-radius:14px;color:var(--muted);font-size:12px}
+footer{border-top:1px solid var(--line);background:#fff;padding:26px 6%;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+footer strong{font-size:17px;color:var(--ink);letter-spacing:-.5px}
+footer strong span{color:var(--teal)}
+footer p,footer small{font-size:10px;color:#87959d;margin:0}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:11px 16px;border-radius:10px;font-size:11px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .22s,transform .22s;z-index:50}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:900px){.nav-btn{padding:9px 8px;font-size:10px}.hero-grid{gap:25px}.path-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){
+ .topbar{height:66px;padding:0 5%}.menu-toggle{display:block}.nav{display:none;position:absolute;top:66px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);padding:12px 5%;flex-direction:column;align-items:stretch;box-shadow:0 12px 20px rgba(24,53,75,.06)}.nav.open{display:flex}.nav-btn{text-align:left;font-size:12px;padding:12px}
+ .hero{padding:45px 0 35px}.hero-grid{grid-template-columns:1fr}.hero-art{min-height:260px}.art-orbit{width:225px;height:225px}.float-tag.tag-a{right:4%}.float-tag.tag-b{left:3%}
+ .wrap{width:88%}.section{padding:40px 0}.dashboard-grid,.lesson-layout{grid-template-columns:1fr}.lesson-sidebar{position:static}.path-grid,.resource-grid{grid-template-columns:1fr}.tool-grid{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.path-row{grid-template-columns:auto 1fr}.path-row .btn{grid-column:2;justify-self:start}.page-head{padding-top:40px}.scenario-body,.lesson-content{padding:20px}.stat-row{gap:7px}.stat{padding:10px}.stat strong{font-size:17px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Classroom and challenge learning experiences */
+.challenge-layout{display:grid;grid-template-columns:260px 1fr;gap:17px;align-items:start}
+.challenge-picker{padding:19px;position:sticky;top:88px}
+.challenge-list{display:grid;gap:7px;margin-top:13px}
+.challenge-choice{border:1px solid transparent;background:#f7f9f8;color:var(--ink-2);border-radius:10px;padding:11px;text-align:left;font-size:11px;font-weight:700;line-height:1.45}
+.challenge-choice.active{background:var(--teal-pale);border-color:#c9dfd9;color:var(--teal-dark)}
+.challenge-main{padding:clamp(20px,3vw,32px)}
+.challenge-topline{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.challenge-main h2,.classroom-intro h2,.classroom-project h2,.exit-ticket h2{font-size:24px;letter-spacing:-.7px;color:var(--ink);margin:12px 0 7px}
+.challenge-intro{font-size:13px;color:var(--muted);line-height:1.8}
+.challenge-task{background:#f1f6f4;border:1px solid #e1ece8;border-radius:13px;padding:17px;margin:18px 0;color:var(--ink);font-size:13px;line-height:1.8}
+.challenge-steps{display:grid;gap:10px;margin:17px 0}
+.challenge-step{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start;font-size:12px;line-height:1.7}
+.challenge-step b{width:27px;height:27px;display:grid;place-items:center;background:var(--blue-pale);border-radius:9px;color:var(--ink);font-size:10px}
+.challenge-question{border-top:1px solid var(--line);padding-top:19px;margin-top:18px}
+.challenge-question label,.field-label{display:block;font-size:12px;font-weight:800;color:var(--ink);margin-bottom:7px}
+.challenge-question p{font-size:12px;color:var(--muted);line-height:1.7}
+.challenge-question textarea{width:100%;resize:vertical;border:1px solid #dce6e3;border-radius:11px;padding:12px;font:inherit;font-size:12px;color:var(--ink);background:#fcfdfc}
+.challenge-actions,.project-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+.small-print,.teacher-note{font-size:10px;color:var(--muted);line-height:1.7;margin-top:13px}
+.classroom-intro{padding:25px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.classroom-intro h2{margin:7px 0}
+.classroom-intro p{font-size:12px;color:var(--muted);margin:0;max-width:620px}
+.classroom-mark{width:92px;height:92px;border-radius:50%;background:var(--teal-pale);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;color:var(--teal)}
+.classroom-mark span{font-size:26px;font-weight:800;line-height:1}
+.classroom-mark small{font-size:8px;font-weight:800;letter-spacing:1px;text-align:center;margin-top:5px}
+.classroom-grid{display:grid;grid-template-columns:1.35fr .8fr;gap:17px;margin-top:17px;align-items:start}
+.classroom-grid>.panel{padding:22px}
+.teacher-select{width:100%;padding:12px;border:1px solid #dce6e3;border-radius:10px;background:#fff;color:var(--ink);font:inherit;font-size:12px;margin-bottom:15px}
+.teacher-lesson h3{font-size:18px;color:var(--ink);margin:7px 0}
+.teacher-lesson p,.teacher-lesson li{font-size:12px;color:var(--muted);line-height:1.75}
+.teacher-lesson h4{font-size:12px;color:var(--ink);margin:17px 0 5px}
+.teacher-lesson ul{padding-left:19px}
+.flow-step{display:grid;grid-template-columns:30px 1fr;gap:10px;margin:17px 0}
+.flow-step>b{width:27px;height:27px;border-radius:9px;background:var(--teal-pale);color:var(--teal);display:grid;place-items:center;font-size:10px}
+.flow-step strong{font-size:12px;color:var(--ink)}
+.flow-step p{font-size:10px;color:var(--muted);margin:2px 0 0;line-height:1.6}
+.btn-full{width:100%;margin-top:10px}
+.classroom-project{padding:23px}
+.classroom-project>div:first-child p,.exit-ticket>p{font-size:12px;color:var(--muted);line-height:1.7}
+.project-prompt{background:#f0f5f4;border-radius:13px;padding:25px;text-align:center;color:var(--ink);font-size:clamp(19px,3vw,28px);font-weight:750;line-height:1.35;margin-top:15px}
+.exit-ticket{padding:23px}
+.exit-ticket li{font-size:12px;color:var(--ink-2);padding:4px 0;line-height:1.7}
+.presentation-mode .topbar,.presentation-mode footer,.presentation-mode .page-head,.presentation-mode .classroom-grid,.presentation-mode .classroom-intro,.presentation-mode .exit-ticket{display:none!important}
+.presentation-mode #classroom .content-pad{width:100%;padding:0}
+.presentation-mode .classroom-project{min-height:80vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;border:0;box-shadow:none;background:var(--canvas)}
+.presentation-mode .classroom-project>div:first-child p{max-width:550px}
+.presentation-mode .project-prompt{width:min(900px,90%);padding:55px;font-size:clamp(32px,5vw,56px)}
+.presentation-mode .project-actions{justify-content:center}
+@media(max-width:800px){.challenge-layout,.classroom-grid{grid-template-columns:1fr}.challenge-picker{position:static}.challenge-list{grid-template-columns:repeat(2,minmax(0,1fr))}.classroom-intro{align-items:flex-start}.classroom-mark{width:70px;height:70px}}
+@media(max-width:520px){.challenge-list{grid-template-columns:1fr}.classroom-mark{display:none}.challenge-topline{flex-direction:column}}
+@media print{
+ body{background:#fff!important;color:#111!important}
+ .topbar,footer,.page-head,.challenge-picker,.teacher-side,.classroom-intro,.classroom-project,.small-print,.btn,.nav{display:none!important}
+ .page{display:none!important}
+ #classroom{display:block!important}
+ #classroom .wrap{width:100%;max-width:none}
+ #classroom .content-pad{padding:0}
+ #classroom .classroom-grid{display:block}
+ #classroom .classroom-grid>.panel{border:0;box-shadow:none;padding:0}
+ #teacherLesson{display:block!important}
+ #teacherLesson *{color:#111!important}
+ #teacherLesson h3{font-size:20px}
+ #teacherLesson p,#teacherLesson li{font-size:12px}
+ #classroom .exit-ticket{display:block!important;border:0;box-shadow:none;padding:20px 0}
+}
+
+
+
+/* KNOW BETTER ORIGINAL VISUAL IDENTITY: field-guide editorial system */
+:root{
+ --ink:#263d32;--ink-2:#48594c;--muted:#7d8173;--teal:#607b59;--teal-dark:#405c3c;
+ --teal-pale:#e6eadc;--blue-pale:#eff0e8;--paper:#fffdf7;--canvas:#f5f1e7;
+ --line:#e3ddce;--gold:#bd8050;--gold-pale:#f4e9d9;--red:#a65c4d;
+ --shadow:0 16px 40px rgba(54,63,43,.08);--radius:8px;
+}
+body{background:var(--canvas);color:var(--ink-2);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;}
+.topbar{height:82px;background:rgba(250,247,238,.96);border-bottom:1px solid #dcd4c3;padding:0 max(5vw,22px);}
+.brand{gap:12px;font-size:22px;letter-spacing:-1.1px;color:var(--ink);text-align:left;line-height:1.05}
+.brand-mark{width:42px;height:42px;border-radius:50% 50% 42% 42%;background:#405c3c;color:#f8f3e7;box-shadow:inset 0 0 0 1px rgba(255,255,255,.24)}
+.brand-mark svg{width:27px;height:27px}
+.brand span span{color:#8b6845}
+.brand-caption{display:block;font-size:7px;letter-spacing:1.25px;font-weight:800;color:#85816f;margin-top:5px}
+.nav{gap:2px}.nav-btn{border-radius:3px;color:#6f766a;font-size:11px;padding:10px 9px;letter-spacing:.05px}
+.nav-btn:hover{background:#ece9dc;color:var(--ink)}.nav-btn.active{background:#dfe5d5;color:#405c3c;box-shadow:inset 0 -2px #607b59}
+.menu-toggle{border-radius:3px;background:var(--paper)}
+.wrap{width:min(1160px,88%)}
+.hero{background:#e9e8d9;position:relative;padding:76px 0 68px;border-bottom:1px solid #d8d7c7;}
+.hero:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.28;background-image:linear-gradient(rgba(81,98,69,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(81,98,69,.12) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(90deg,black,transparent 85%)}
+.hero-grid{position:relative;grid-template-columns:1.04fr .96fr;gap:64px}
+.hero .eyebrow:before{content:"✳";font-size:13px;margin-right:8px;color:#b77d4e}
+.hero h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;font-size:clamp(48px,5.6vw,72px);letter-spacing:-2.6px;line-height:1.01;color:#293e31;max-width:570px}
+.hero h1 em{color:#7d684b;font-style:italic}
+.lead{color:#626d5e;font-size:15px;max-width:470px}
+.btn{border-radius:4px;letter-spacing:.1px}.btn-primary{background:#405c3c;box-shadow:3px 3px 0 #c1c9b4}.btn-primary:hover{background:#304a2e;box-shadow:4px 5px 0 #c1c9b4}.btn-secondary{background:#f8f5eb;border-color:#c9cdbb;color:#405c3c}
+.btn-quiet{color:#607b59}
+.hero-art{min-height:330px}
+.art-orbit{width:290px;height:290px;border-radius:47% 53% 48% 52%;background:#d3d9c5;transform:rotate(-13deg)}
+.art-card{width:min(320px,90%);border-radius:4px;background:#fffdf6;border:1px solid #d9d1bd;box-shadow:13px 15px 0 rgba(89,103,72,.13);transform:rotate(2deg);padding:23px}
+.art-top{color:#8b806b;font-family:Georgia,serif;font-size:10px;letter-spacing:1.4px}
+.art-graphic{border-radius:3px;background:#e8ebdd;position:relative}
+.art-graphic:before,.art-graphic:after{border-color:rgba(96,123,89,.28);border-radius:46% 54% 50% 50%;transform:rotate(20deg)}
+.art-cross{width:72px;height:72px;border-radius:50%;background:#607b59;box-shadow:0 7px 0 #c5cfb9}
+.art-bottom strong{font-family:Georgia,"Times New Roman",serif;font-size:17px;font-weight:600;color:#304333}
+.float-tag{border-radius:3px;background:#fbf7ed;border-color:#d8cfbb;color:#53664c;box-shadow:4px 5px 0 rgba(75,87,62,.1);font-family:Georgia,serif;font-size:11px}
+.tag-a{right:-5px;top:12px}.tag-b{left:-6px;bottom:13px}
+.section{padding:62px 0}.section-head h2,.page-head h1,.lesson-content h2{font-family:Georgia,"Times New Roman",serif;font-weight:500;color:#304333;letter-spacing:-.8px}
+.section-head h2{font-size:30px}.eyebrow{color:#71835d;letter-spacing:1.8px}
+.panel,.card{background:var(--paper);border:1px solid #ded7c7;border-radius:5px;box-shadow:0 5px 0 rgba(74,84,59,.045)}
+.panel{padding:25px}.daily-card{background:#e4e8d9;border:1px solid #d0d8c4;border-radius:5px}.daily-card h3{font-family:Georgia,serif;font-weight:500;font-size:22px;color:#304333}.daily-card p{color:#687363}
+.icon-box{border-radius:50%;background:#d1dbc6;color:#496344}
+.stat{background:#f0eee4;border-radius:3px}.stat strong{color:#405c3c}
+.progress-track{background:#e8e5d9;border-radius:2px}.progress-fill{background:#718b62;border-radius:2px}
+.path-card{border-radius:4px;background:#fffdf7;border-color:#ded7c7;box-shadow:0 3px 0 rgba(74,84,59,.04)}
+.path-card:hover{border-color:#aab89b;box-shadow:0 8px 18px rgba(54,63,43,.08)}
+.path-card h3,.path-row h3,.panel-title h3,.lesson-sidebar h3{font-family:Georgia,serif;font-weight:600;color:#304333}
+.path-meta{color:#607b59}.path-row{border-radius:4px;background:#fffdf7;border-color:#ded7c7}
+.page-head{padding-top:60px}.page-head h1{font-size:clamp(38px,4.5vw,54px)}
+.lesson-sidebar{border-radius:4px;background:#efeee3}.lesson-link{border-radius:3px}.lesson-link:hover,.lesson-link.active{background:#dce4d2;color:#405c3c}
+.answer,.mini-card,.resource-card,.challenge-card{border-radius:4px}
+footer{background:#e9e8d9!important;border-top:1px solid #d8d7c7!important}
+@media(max-width:900px){.topbar{height:72px}.nav-btn{font-size:10px}.hero-grid{gap:28px}}
+@media(max-width:700px){.topbar{height:68px}.brand-caption{font-size:6px}.hero{padding:48px 0 40px}.hero h1{font-size:48px}.hero-art{min-height:270px}.art-orbit{width:225px;height:225px}.section{padding:44px 0}}
+@media(prefers-reduced-motion:reduce){.page,.btn,.nav-btn,.path-card{animation:none!important;transition:none!important}}
+
+
+/* Know Better learning expansion */
+.teacher-customize{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.format-note{font-size:11px;color:#687363;background:#f3f1e8;padding:9px 11px;border-radius:4px}.challenge-choice{line-height:1.5}.challenge-choice .small-label{display:inline-block;margin-bottom:4px}@media(max-width:520px){.teacher-customize{grid-template-columns:1fr}}
+.personal-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.personal-card h3{font-family:Georgia,serif;color:#304333;font-size:21px;font-weight:500;margin:10px 0 6px}.personal-card p,.muted-copy{font-size:12px;color:#687363;line-height:1.7}.takeaway-list{display:grid;gap:9px}.takeaway-item{background:#f3f1e8;border:1px solid #e2ddce;padding:10px;border-radius:4px}.takeaway-item strong{font-size:12px;color:#304333}.takeaway-item p{margin:4px 0;font-size:12px}.takeaway-item small{font-size:10px;color:#71806c}.text-action{border:0;background:transparent;color:#687e57;text-decoration:underline;font-size:11px;padding:3px 0}.sequence-rail{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #e3dfd2}.sequence-rail span{font-size:9px;letter-spacing:.8px;color:#84907d;font-weight:800}.sequence-rail .sequence-active{color:#506b45}.lesson-apply,.lesson-reflect{background:#f3f1e8;border:1px solid #e2ddce;padding:16px;margin:18px 0;border-radius:4px}.lesson-apply h3{font-family:Georgia,serif;color:#304333;font-size:18px;margin:7px 0}.lesson-apply p{margin-bottom:12px}.lesson-reflect textarea,.studio-panel textarea{width:100%;border:1px solid #d9d6c9;background:#fffdf7;border-radius:4px;padding:11px;font:inherit;font-size:12px;resize:vertical}.field-label{display:block;font-size:11px;font-weight:750;color:#52664b;margin-bottom:6px}.studio-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.studio-panel h2{font-family:Georgia,serif;color:#304333;font-size:23px;font-weight:500;margin:8px 0}.studio-panel>p{font-size:12px;color:#687363;line-height:1.75}.studio-wide{grid-column:1/-1}.sort-item{padding:17px;background:#f3f1e8;border:1px solid #e2ddce;border-radius:4px;color:#304333;font-size:14px;min-height:86px;display:flex;align-items:center;margin:14px 0}.sort-options{display:flex;gap:8px;flex-wrap:wrap}.studio-panel .result{margin-top:12px}.teacher-select{width:100%;border:1px solid #d9d6c9;background:#fffdf7;border-radius:4px;padding:11px;color:#304333;font:inherit;font-size:12px}.small-print{font-size:11px;color:#71806c}.page-head p:last-child{max-width:720px}
+@media(max-width:760px){.personal-grid,.studio-grid{grid-template-columns:1fr}.studio-wide{grid-column:auto}.sequence-rail{gap:6px}.sequence-rail span{font-size:8px}.personal-card{padding:18px}}
+@media print{.topbar,.hero-actions,.nav,.menu-toggle,button{display:none!important}.page{display:block!important}.panel{break-inside:avoid;box-shadow:none}}
+
+
+.setup-layout{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;align-items:start}.setup-form{padding:24px}.setup-form .panel-title{margin-bottom:12px}.field-label{display:block;font-size:11px;font-weight:750;color:var(--ink);margin:13px 0 6px}.setup-input{display:block;width:100%;border:1px solid #dce6e3;border-radius:10px;background:#fff;padding:11px 12px;font:inherit;font-size:12px;color:var(--ink-2);outline:none}.setup-input:focus{border-color:#83b9af;box-shadow:0 0 0 3px rgba(40,127,121,.1)}.setup-divider{height:1px;background:var(--line);margin:22px 0}.setup-help{font-size:11px;color:var(--muted);margin:-5px 0 10px}.setup-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.setup-check{display:flex;gap:9px;align-items:center;font-size:11px;color:var(--ink-2);margin:12px 0}.setup-check input{accent-color:var(--teal);width:15px;height:15px}.setup-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}.setup-status{font-size:11px;color:var(--teal-dark);margin:13px 0 0}.setup-preview-col{display:grid;gap:14px;position:sticky;top:92px}.setup-preview{padding:20px}.preview-banner{background:linear-gradient(120deg,#eaf3f1,#f1f5f7);border-radius:14px;padding:19px;margin-bottom:14px}.preview-banner h2{font-size:22px;letter-spacing:-.7px;color:var(--ink);margin:8px 0 5px}.preview-banner p,.export-panel p{font-size:11px;color:var(--muted);line-height:1.7;margin:0}.preview-contact{border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:10px}.preview-person{padding:11px 0 0;margin-top:10px;border-top:1px solid #edf0ef}.preview-person strong{display:block;font-size:12px;color:var(--ink)}.preview-person span{font-size:10px;color:var(--muted)}.preview-contact a{display:inline-block;margin-top:10px;color:var(--teal-dark);font-size:12px;font-weight:750}.export-panel{padding:20px}.export-panel h3{font-size:14px;color:var(--ink);margin-bottom:7px}.export-panel .btn{margin-top:14px}
+@media(max-width:850px){.setup-layout{grid-template-columns:1fr}.setup-preview-col{position:static}}
+@media(max-width:540px){.setup-two{grid-template-columns:1fr}.setup-form{padding:17px}}
+
+
+/* Expanded Know Better experience */
+.nav{flex-wrap:wrap;justify-content:flex-end;max-width:78%}
+.nav-btn{font-size:10px;padding:8px 8px}
+.feature-shortcuts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.feature-shortcut{min-height:150px;text-align:left;background:#fbf8ef;border:1px solid #ded7c7;border-radius:4px;padding:18px;display:flex;flex-direction:column;gap:8px;color:#53664c}
+.feature-shortcut strong{font:500 21px Georgia,serif;color:#304333}
+.feature-shortcut>span:last-child{font-size:11px;line-height:1.6;color:#75806f}
+.feature-shortcut:hover{border-color:#aab89b;transform:translateY(-2px)}
+.coming-soon-panel{max-width:850px;margin:0 auto;padding:clamp(25px,5vw,55px);background:#f8f5eb;position:relative;overflow:hidden}
+.coming-soon-panel:after{content:"";position:absolute;width:240px;height:240px;border:1px solid #d7ddca;border-radius:50%;right:-95px;top:-100px;box-shadow:0 0 0 25px #eef0e5,0 0 0 50px #f3f0e4}
+.coming-stamp{display:inline-block;border:1px solid #aab89b;color:#526a48;padding:6px 10px;font-size:9px;font-weight:800;letter-spacing:1.4px;margin-bottom:22px}
+.coming-soon-panel h2,.world-intro h2,.ask-panel h2{font:500 clamp(29px,4vw,43px)/1.15 Georgia,serif;color:#304333;max-width:620px;margin:12px 0}
+.coming-soon-panel>p:not(.eyebrow){max-width:640px;font-size:13px;line-height:1.85;color:#687363}
+.coming-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:28px 0}
+.coming-grid div{background:#efeee3;padding:14px;border:1px solid #e0ddcf}
+.coming-grid strong,.coming-grid span{display:block}.coming-grid strong{font:500 16px Georgia,serif;color:#304333}.coming-grid span{font-size:10px;color:#77806f;margin-top:5px;line-height:1.5}
+.dictionary-search{margin-bottom:16px}.dictionary-search input{margin:8px 0 0}
+.dictionary-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+.dictionary-tag{border:1px solid #d7d9c9;background:#f4f2e8;color:#53664c;padding:7px 10px;border-radius:2px;font-size:10px}
+.dictionary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.dictionary-entry{padding:18px;background:#fffdf7;border:1px solid #ded7c7;min-height:150px}
+.dictionary-entry h3{font:500 20px Georgia,serif;color:#304333;margin:5px 0}
+.dictionary-entry p{font-size:12px;color:#687363;line-height:1.7;margin:0}
+.dictionary-entry .term-type{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#7b8b68;font-weight:800}
+.ask-panel{margin-top:18px;background:#efeee3}.ask-panel>p{font-size:12px;color:#687363}
+.question-library{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:16px}
+.question-btn{text-align:left;border:1px solid #d9d7c8;background:#fbf8ef;padding:12px;color:#40543b;font-size:11px}
+.question-btn:hover{border-color:#9eae8d;background:#f7f5ec}
+.question-answer{margin-top:13px;padding:17px;background:#fffdf7;border-left:3px solid #718b62}
+.question-answer h3{font:500 20px Georgia,serif;color:#304333;margin:0 0 6px}
+.question-answer p{font-size:12px;line-height:1.8;color:#687363;margin:0}
+.world-intro{background:#e9e8d9;margin-bottom:15px}
+.world-intro p{font-size:13px;line-height:1.8;color:#687363;max-width:730px;margin-bottom:0}
+.world-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.world-card{background:#fffdf7;border:1px solid #ded7c7;padding:20px}
+.world-card .world-number{font:italic 28px Georgia,serif;color:#a47b55}
+.world-card h3{font:500 21px Georgia,serif;color:#304333;margin:7px 0}
+.world-card p{font-size:12px;line-height:1.7;color:#687363}
+.world-card strong{display:block;font-size:10px;color:#526a48;line-height:1.6;margin-top:12px}
+.world-reflection{margin-top:16px}.world-reflection h3{font:500 23px Georgia,serif;color:#304333;margin:8px 0}
+.world-reflection textarea{margin:10px 0;width:100%}
+.portfolio-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:15px}
+.portfolio-stat{background:#e9e8d9;border:1px solid #d8d7c7;padding:17px}
+.portfolio-stat strong{display:block;font:500 30px Georgia,serif;color:#304333}
+.portfolio-stat span{font-size:10px;color:#687363}
+.portfolio-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.achievement-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.achievement{padding:13px;border:1px solid #e1ddcf;background:#f5f2e9;min-height:110px}
+.achievement.locked{opacity:.52;filter:grayscale(.5)}
+.achievement .achievement-mark{font:italic 24px Georgia,serif;color:#9b8058}
+.achievement strong{display:block;font:500 16px Georgia,serif;color:#304333;margin:3px 0}
+.achievement p{font-size:10px;line-height:1.5;color:#687363;margin:0}
+.topic-row{margin:13px 0}.topic-row-top{display:flex;justify-content:space-between;font-size:11px;color:#687363;margin-bottom:5px}
+.portfolio-actions{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}
+.lesson-builder-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:15px;align-items:start}
+.lesson-builder-form{display:grid;gap:8px}
+.lesson-builder-form .field-label{margin-top:5px}
+.lesson-builder-output h2{font:500 28px Georgia,serif;color:#304333;margin:8px 0}
+.lesson-builder-output h3{font:500 19px Georgia,serif;color:#304333;margin:18px 0 5px}
+.lesson-builder-output p,.lesson-builder-output li{font-size:12px;line-height:1.75;color:#687363}
+.lesson-builder-output ul{padding-left:19px}
+.lesson-timing{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:14px 0}
+.lesson-timing div{background:#efeee3;padding:10px}
+.lesson-timing strong,.lesson-timing span{display:block}.lesson-timing strong{font:500 17px Georgia,serif;color:#304333}.lesson-timing span{font-size:9px;color:#687363}
+.accessibility-tools{display:flex;gap:7px;align-items:center}
+.accessibility-tools button{border:1px solid #d9d2c1;background:#f8f5eb;color:#405c3c;padding:7px 9px;font-size:10px}
+body.large-type{font-size:112%}body.large-type p,body.large-type li{font-size:1.08em!important}
+body.high-contrast{--ink:#172719;--ink-2:#273b2a;--muted:#515c4d;--line:#aaa98f}
+body.high-contrast .panel,body.high-contrast .path-card,body.high-contrast .dictionary-entry{border:2px solid #59654c}
+body.reduce-motion *,body.reduce-motion *:before,body.reduce-motion *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+@media(max-width:1000px){.nav{max-width:72%}.nav-btn{font-size:9px;padding:7px 6px}.feature-shortcuts{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.nav{display:none;position:absolute;top:68px;left:0;right:0;max-width:none;background:#faf7ee;padding:12px 5%;border-bottom:1px solid #dcd4c3;box-shadow:0 12px 20px #30433312;justify-content:flex-start}.nav.open{display:flex}.nav-btn{font-size:10px}.dictionary-grid,.world-grid{grid-template-columns:repeat(2,1fr)}.lesson-builder-grid,.portfolio-grid{grid-template-columns:1fr}}
+@media(max-width:520px){.feature-shortcuts,.dictionary-grid,.world-grid,.coming-grid,.portfolio-stats{grid-template-columns:1fr 1fr}.question-library{grid-template-columns:1fr}.lesson-timing{grid-template-columns:repeat(2,1fr)}.achievement-grid{grid-template-columns:1fr 1fr}}
+@media print{.portfolio-actions,.topbar,footer{display:none!important}#portfolio{display:block!important}.page{display:none!important}#portfolio .page-head{display:block!important}}
+
+</style>
+</head>
+<body>
+<header class="topbar">
+  <button class="brand" data-page="home" aria-label="Know Better home">
+    <span class="brand-mark"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7.5c3.2-1.2 6.2-.8 9 1.2v13c-2.8-2-5.8-2.4-9-1.2z"/><path d="M23 7.5c-3.2-1.2-6.2-.8-9 1.2v13c2.8-2 5.8-2.4 9-1.2z"/><path d="M14 8.7v13"/><path d="M8 11c1.5-.3 2.8 0 4 1"/><path d="M20 11c-1.5-.3-2.8 0-4 1"/></svg></span>
+    <span>Know <span>Better</span><small class="brand-caption"> A FIELD GUIDE TO EVERYDAY HEALTH</small></span>
+  </button>
+  <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">Menu</button>
+  <div class="accessibility-tools" aria-label="Display preferences">
+    <button type="button" id="fontToggle" aria-label="Toggle larger text">A+</button>
+    <button type="button" id="contrastToggle" aria-label="Toggle high contrast">Contrast</button>
+    <button type="button" id="motionToggle" aria-label="Reduce motion">Motion</button>
+    <button type="button" id="readAloudToggle" aria-label="Read the current page aloud">Read aloud</button>
+  </div>
+  <nav class="nav" id="nav">
+    <button class="nav-btn active" data-page="home">Overview</button>
+    <button class="nav-btn" data-page="paths">Learning paths</button>
+    <button class="nav-btn" data-page="scenarios">Scenario lab</button>
+    <button class="nav-btn" data-page="myths">Myth detective</button>
+    <button class="nav-btn" data-page="studio">Practice studio</button>
+    <button class="nav-btn" data-page="dictionary">Health dictionary</button>
+    <button class="nav-btn" data-page="world">Global health</button>
+    <button class="nav-btn" data-page="portfolio">My portfolio</button>
+    <button class="nav-btn" data-page="lessonbuilder">Lesson builder</button>
+    <button class="nav-btn" data-page="review">Knowledge review</button>
+    <button class="nav-btn" data-page="challenges">Weekly challenges</button>
+    <button class="nav-btn" data-page="classroom">Teacher classroom</button>
+    <button class="nav-btn" data-page="schoolsetup">School setup</button>
+    <button class="nav-btn" data-page="resources">School support</button>
+  </nav>
+</header>
+
+<main>
+<section class="page active" id="home">
+  <div class="hero"><div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Everyday health. Real-life skills.</p>
+      <h1>Know more.<br><em>Feel prepared.</em></h1>
+      <p class="lead">Build the confidence to understand health information, think through everyday situations, and know where to find support.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" data-page="paths">Explore learning paths</button>
+        <button class="btn btn-secondary" data-page="scenarios">Try a scenario</button>
+      </div>
+      <p class="hero-note">Made for learning at your own pace. No account required.</p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="art-orbit"></div>
+      <div class="art-card">
+        <div class="art-top"><span>KNOW BETTER FIELD NOTES</span><span>01 / 06</span></div>
+        <div class="art-graphic"><div class="art-cross"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 4v16M4 12h16"/><circle cx="12" cy="12" r="9"/></svg></div></div>
+        <div class="art-bottom"><strong>Knowledge for everyday life</strong><span>Learn a little. Use it often.</span></div>
+      </div>
+      <span class="float-tag tag-a">Practical knowledge</span><span class="float-tag tag-b">Skills that build over time</span>
+    </div>
+  </div></div>
+
+  <section class="section wrap">
+    <div class="section-head"><div><p class="eyebrow">YOUR LEARNING SPACE</p><h2>A little progress adds up.</h2><p>Your progress is saved on this device only.</p></div><button class="btn btn-quiet" data-page="paths">View all learning paths →</button></div>
+    <div class="dashboard-grid">
+      <div class="panel">
+        <div class="panel-title"><h3>Your learning overview</h3><span class="small-label">Personal progress</span></div>
+        <div class="progress-row"><span>Lessons completed</span><strong id="progressText">0 of 18</strong></div>
+        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="stat-row">
+          <div class="stat"><strong id="lessonStat">0</strong><span>Lessons finished</span></div>
+          <div class="stat"><strong id="scenarioStat">0</strong><span>Scenarios explored</span></div>
+          <div class="stat"><strong id="reviewStat">0</strong><span>Review rounds</span></div>
+        </div>
+      </div>
+      <div class="daily-card">
+        <span class="small-label">A question to consider</span>
+        <div class="icon-box" style="margin-top:10px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a7 7 0 0 0-4 12.7c.7.5 1 1.1 1 1.8h6c0-.7.3-1.3 1-1.8A7 7 0 0 0 12 3Z"/><path d="M9 21h6M9 18h6"/></svg></div>
+        <h3 id="dailyTitle">What makes health information trustworthy?</h3>
+        <p id="dailyDescription">A useful place to start is checking who created the information and what evidence supports it.</p>
+        <button class="btn btn-primary" data-page="myths">Explore the idea</button>
+      </div>
+    </div>
+    <div class="personal-grid" style="margin-top:16px">
+      <article class="panel personal-card"><span class="small-label">YOUR NEXT STEP</span><h3 id="nextStepTitle">Start with a learning path</h3><p id="nextStepText">Choose a topic to begin building practical health literacy skills.</p><button class="btn btn-secondary" id="nextStepButton" data-page="paths">Find your next lesson</button></article>
+      <article class="panel personal-card"><span class="small-label">MY TAKEAWAYS</span><h3>Keep useful ideas close.</h3><p>Save a short takeaway from a lesson or activity. It stays in this browser on this device.</p><div id="takeawayList" class="takeaway-list"><p class="muted-copy">Your saved takeaways will appear here.</p></div></article>
+    </div>
+  </section>
+
+  <section class="section wrap" style="padding-top:0">
+    <div class="section-head"><div><p class="eyebrow">KEEP BUILDING</p><h2>Choose a learning path.</h2><p>Each path contains short lessons and practical activities.</p></div></div>
+    <div class="path-grid" id="homePaths"></div>
+  </section>
+
+  <section class="section wrap" style="padding-top:0">
+    <div class="section-head"><div><p class="eyebrow">THIS WEEK</p><h2>Think through a real-life situation.</h2><p>New scenarios help you practice using what you learn.</p></div></div>
+    <div class="panel" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+      <div style="max-width:650px"><span class="small-label">Featured scenario</span><h3 style="font-size:19px;color:var(--ink);margin:8px 0">A health tip is going viral. Should you share it?</h3><p style="font-size:12px;color:var(--muted);margin:0">Practice pausing, checking the source, and thinking before passing information along.</p></div>
+      <button class="btn btn-secondary" data-page="scenarios">Open scenario lab →</button>
+    </div>
+  </section>
+
+  <section class="section wrap" style="padding-top:0">
+    <div class="section-head"><div><p class="eyebrow">MORE WAYS TO EXPLORE</p><h2>Build skills beyond the lesson.</h2><p>Look up a term, explore global health, or see how your learning is growing.</p></div></div>
+    <div class="feature-shortcuts">
+      <button class="feature-shortcut" data-page="dictionary"><span class="small-label">LOOK IT UP</span><strong>Health dictionary</strong><span>Clear explanations for useful health terms.</span></button>
+      <button class="feature-shortcut" data-page="world"><span class="small-label">ZOOM OUT</span><strong>Global health</strong><span>Explore how communities support public health.</span></button>
+      <button class="feature-shortcut" data-page="portfolio"><span class="small-label">YOUR PROGRESS</span><strong>Learning portfolio</strong><span>Review milestones and saved takeaways.</span></button>
+      <button class="feature-shortcut" data-page="lessonbuilder"><span class="small-label">FOR EDUCATORS</span><strong>Lesson builder</strong><span>Create a classroom outline and print it.</span></button>
+    </div>
+  </section>
+</section>
+
+<section class="page" id="paths">
+  <div class="wrap page-head"><p class="eyebrow">BUILD KNOWLEDGE OVER TIME</p><h1>Learning paths</h1><p>Explore six areas of everyday health literacy. Work through the lessons in any order, revisit topics, and use the review area to reinforce what you have learned.</p></div>
+  <div class="wrap content-pad"><div class="path-list" id="allPaths"></div></div>
+</section>
+
+<section class="page" id="lesson">
+  <div class="wrap page-head"><p class="eyebrow" id="lessonEyebrow">LEARNING PATH</p><h1 id="lessonPathTitle">Lesson</h1><p id="lessonIntro">A short lesson to build practical knowledge.</p></div>
+  <div class="wrap content-pad lesson-layout">
+    <aside class="panel lesson-sidebar"><h3>In this learning path</h3><div id="lessonMenu"></div><button class="btn btn-quiet" data-page="paths" style="margin-top:12px">← All learning paths</button></aside>
+    <article class="panel lesson-content" id="lessonContent"></article>
+  </div>
+</section>
+
+<section class="page" id="scenarios">
+  <div class="wrap page-head"><p class="eyebrow">PRACTICE YOUR DECISION-MAKING</p><h1>Scenario lab</h1><p>Read a situation, consider your options, and see why one response may be more helpful than another. These activities teach general skills, not medical advice.</p></div>
+  <div class="wrap content-pad">
+    <div class="scenario-card card">
+      <div class="scenario-top"><span id="scenarioCategory">DIGITAL HEALTH LITERACY</span><span id="scenarioCounter">CHALLENGE 01 · ROTATING SET</span></div>
+      <div class="scenario-body">
+        <span class="small-label">Consider the situation</span><h2 id="scenarioTitle">The group chat claim</h2>
+        <p id="scenarioPrompt"></p><h3 style="font-size:13px;color:var(--ink);margin-bottom:12px">What would be the best next step?</h3>
+        <div class="answers" id="scenarioAnswers"></div>
+        <div class="feedback" id="scenarioFeedback" hidden><h3 id="scenarioFeedbackTitle"></h3><p id="scenarioFeedbackText"></p><button class="btn btn-primary" id="nextScenario">Next scenario</button></div>
+      </div>
+    </div>
+    <p style="font-size:10px;color:var(--muted);margin-top:14px">Scenarios are educational examples. If a real situation involves health or safety concerns, talk with a trusted adult or qualified professional.</p>
+  </div>
+</section>
+
+<section class="page" id="myths">
+  <div class="wrap page-head"><p class="eyebrow">PAUSE. CHECK. VERIFY.</p><h1>Myth detective</h1><p>Online health claims can be confident without being accurate. Use a repeatable method to evaluate what you see before trusting or sharing it.</p></div>
+  <div class="wrap content-pad">
+    <div class="tool-grid">
+      <article class="panel tool-card"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg></div><h3>1. Identify the source</h3><p>Find the original author or organization. A repost may leave out important context.</p></article>
+      <article class="panel tool-card"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></div><h3>2. Look for evidence</h3><p>Does the author explain how they know? Are reliable sources linked and represented fairly?</p></article>
+      <article class="panel tool-card"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><h3>3. Check the date</h3><p>Some information changes. Check when it was published or last reviewed.</p></article>
+      <article class="panel tool-card"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M9 12.5 11 14l4-5"/><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/></svg></div><h3>4. Compare and verify</h3><p>Look for agreement across independent, reputable health organizations. One post is not enough.</p></article>
+    </div>
+    <div class="panel" style="padding:23px;margin-top:17px;max-width:850px">
+      <p class="eyebrow">TRY THE METHOD</p><h2 style="font-size:21px;color:var(--ink);margin:8px 0">Investigate a sample claim</h2>
+      <div class="claim-box"><span class="small-label">Example social media post</span><blockquote>“This one simple trick works for everyone. You do not need to check with anyone.”</blockquote><p style="font-size:11px;color:var(--muted);margin:0">This is a fictional example designed to help you practice evaluating claims.</p></div>
+      <p style="font-size:12px;color:var(--ink);font-weight:700">Which details would make you pause?</p>
+      <div class="checklist" id="mythChecks">
+        <label class="check-row"><input type="checkbox" value="source"> The post does not identify a qualified source.</label>
+        <label class="check-row"><input type="checkbox" value="absolute"> It makes a guarantee about everyone.</label>
+        <label class="check-row"><input type="checkbox" value="evidence"> It does not provide evidence.</label>
+        <label class="check-row"><input type="checkbox" value="date"> It does not show when the information was reviewed.</label>
+      </div>
+      <button class="btn btn-primary" id="checkMyth">Check my thinking</button>
+      <div class="result" id="mythResult" hidden></div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="studio">
+  <div class="wrap page-head"><p class="eyebrow">LEARN BY TRYING</p><h1>Practice studio</h1><p>Try short activities that ask you to sort information, connect ideas, and explain your reasoning. These are fictional learning exercises, not personal health assessments.</p></div>
+  <div class="wrap content-pad studio-grid">
+    <article class="panel studio-panel"><span class="small-label">ACTIVITY 01 · SOURCE CHECK</span><h2>Sort the information</h2><p>Choose the category that best describes each example. Look for evidence, expertise, context, and transparency.</p>
+      <div class="sort-item" id="sortPrompt">A public health organization explains who reviewed its article and links to supporting evidence.</div>
+      <div class="sort-options"><button class="btn btn-secondary" data-sort="reliable">More reliable</button><button class="btn btn-secondary" data-sort="questionable">Needs a closer look</button></div>
+      <div class="result" id="sortFeedback" hidden aria-live="polite"></div><button class="btn btn-quiet" id="nextSort">Next example →</button>
+    </article>
+    <article class="panel studio-panel"><span class="small-label">ACTIVITY 02 · CONNECT THE IDEAS</span><h2>Match the concept</h2><p>Select a term, then choose the example that best matches it.</p>
+      <label class="field-label" for="matchTerm">Concept</label><select id="matchTerm" class="teacher-select"><option value="source">Original source</option><option value="evidence">Evidence</option><option value="context">Context</option><option value="uncertainty">Uncertainty</option></select>
+      <label class="field-label" for="matchExample" style="margin-top:12px">Matching example</label><select id="matchExample" class="teacher-select"><option value="evidence">Information that supports or helps verify a claim</option><option value="source">The person or organization that first created the information</option><option value="uncertainty">Being clear about what is known and what is not known</option><option value="context">Details that help explain when, why, and for whom information applies</option></select>
+      <button class="btn btn-primary" id="checkMatch" style="margin-top:14px">Check match</button><div class="result" id="matchFeedback" hidden aria-live="polite"></div>
+    </article>
+    <article class="panel studio-panel studio-wide"><span class="small-label">ACTIVITY 03 · REFLECT</span><h2>Explain your thinking</h2><p>Pick a fictional claim or situation and describe one thing you would check before deciding what to do next.</p>
+      <label class="field-label" for="studioReflection">Your reflection</label><textarea id="studioReflection" rows="3" placeholder="I would first check... because..."></textarea>
+      <button class="btn btn-primary" id="saveStudioReflection">Save to My Takeaways</button><span class="small-label" id="studioSaveStatus" aria-live="polite"></span>
+    </article>
+  </div>
+</section>
+
+<section class="page" id="review">
+  <div class="wrap page-head"><p class="eyebrow">REVISIT WHAT YOU HAVE LEARNED</p><h1>Keep learning</h1><p>Practice does not have a finish line. Each round draws a fresh mix of questions from a growing question bank, so you can return whenever you want to strengthen what you know.</p></div>
+  <div class="wrap content-pad">
+    <div class="panel review-card" id="reviewCard">
+      <span class="small-label" id="reviewRound">ENDLESS PRACTICE · READY WHEN YOU ARE</span><div class="review-progress"><span id="reviewBar" style="width:0%"></span></div>
+      <h2 id="reviewQuestion">Ready to review?</h2><p id="reviewPrompt" style="font-size:12px;color:var(--muted)">Each round includes four randomly selected questions. Finish a round, then start another whenever you like.</p>
+      <div class="review-options" id="reviewOptions"></div>
+      <div id="reviewFeedback" class="result" hidden></div>
+      <button class="btn btn-primary" id="reviewAction">Start review</button>
+    </div>
+  </div>
+</section>
+
+
+<section class="page" id="challenges">
+  <div class="wrap page-head"><p class="eyebrow">LEARN BY DOING</p><h1>Weekly real-life challenges</h1><p>Practice health literacy through fictional situations. Work through the steps, explain your reasoning, and use the feedback to strengthen your decision-making.</p></div>
+  <div class="wrap content-pad">
+    <div class="challenge-layout">
+      <aside class="panel challenge-picker">
+        <span class="small-label">CHOOSE A CHALLENGE</span>
+        <div id="challengeList" class="challenge-list"></div>
+      </aside>
+      <article class="panel challenge-main">
+        <div class="challenge-topline"><span class="small-label" id="challengeWeek">WEEK 01</span><span class="small-label">LEARN · APPLY · REFLECT</span></div>
+        <h2 id="challengeTitle">The Health Information Challenge</h2>
+        <p id="challengeIntro" class="challenge-intro"></p>
+        <div class="challenge-task" id="challengeTask"></div>
+        <div class="challenge-steps" id="challengeSteps"></div>
+        <div class="challenge-question">
+          <label for="challengeAnswer">Your reasoning</label>
+          <p id="challengeQuestion"></p>
+          <textarea id="challengeAnswer" rows="4" placeholder="Write a few sentences explaining your thinking. Keep this general. Do not include personal or private health information."></textarea>
+          <div class="challenge-actions"><button class="btn btn-primary" id="challengeCheck">Check my thinking</button><button class="btn btn-secondary" id="challengeReset">Reset response</button></div>
+          <div class="result" id="challengeFeedback" hidden></div>
+        </div>
+      </article>
+    </div>
+    <p class="small-print">Challenges are fictional educational activities. They do not provide diagnosis, treatment, or individualized medical advice.</p>
+  </div>
+</section>
+
+<section class="page" id="classroom">
+  <div class="wrap page-head"><p class="eyebrow">READY-TO-USE CLASSROOM SUPPORT</p><h1>Teacher classroom</h1><p>Use Know Better to introduce a topic, guide discussion, and check understanding. No teacher or student account is required for these classroom materials.</p></div>
+  <div class="wrap content-pad">
+    <div class="classroom-intro panel">
+      <div><span class="small-label">TEACHER TOOLKIT</span><h2>Bring health literacy into the lesson.</h2><p>Choose a topic to view a suggested lesson sequence, learning objectives, discussion prompts, and a printable student worksheet.</p></div>
+      <div class="classroom-mark"><span>30</span><small>MINUTE<br>LESSON</small></div>
+    </div>
+    <div class="classroom-grid">
+      <div class="panel">
+        <span class="small-label">SELECT A CLASSROOM TOPIC</span>
+        <label class="field-label" for="teacherTopic">Lesson topic</label>
+        <select id="teacherTopic" class="teacher-select">
+          <option value="literacy">Evaluating health information</option>
+          <option value="decisions">Making informed decisions</option>
+          <option value="hygiene">Everyday hygiene and prevention</option>
+          <option value="sleep">Sleep and well-being</option>
+          <option value="support">Finding trusted support</option>
+        </select>
+        <div class="teacher-customize">
+          <div><label class="field-label" for="lessonDuration">Class time</label><select id="lessonDuration" class="teacher-select"><option value="20">20 minutes</option><option value="30" selected>30 minutes</option><option value="45">45 minutes</option><option value="60">60 minutes</option></select></div>
+          <div><label class="field-label" for="lessonFormat">Teaching format</label><select id="lessonFormat" class="teacher-select"><option value="whole">Whole-class discussion</option><option value="pairs">Partner / small groups</option><option value="independent">Independent reflection</option></select></div>
+        </div>
+        <div id="teacherLesson" class="teacher-lesson"></div>
+      </div>
+      <aside class="panel teacher-side">
+        <span class="small-label">CLASSROOM FLOW</span>
+        <div class="flow-step"><b>01</b><div><strong>Introduce</strong><p>Connect the topic to students' prior knowledge.</p></div></div>
+        <div class="flow-step"><b>02</b><div><strong>Explore</strong><p>Read the example and model the thinking process.</p></div></div>
+        <div class="flow-step"><b>03</b><div><strong>Discuss</strong><p>Invite students to explain and compare their reasoning.</p></div></div>
+        <div class="flow-step"><b>04</b><div><strong>Check understanding</strong><p>Use the exit ticket to identify what needs review.</p></div></div>
+        <button class="btn btn-primary btn-full" id="printTeacher">Print lesson + worksheet</button>
+        <p class="teacher-note">Teacher materials are planning supports. Review and adapt them to your curriculum, student needs, and school guidance.</p>
+      </aside>
+    </div>
+    <div class="panel classroom-project" style="margin-top:18px">
+      <div><span class="small-label">WHOLE-CLASS DISCUSSION</span><h2>Project a discussion prompt</h2><p>Display one prompt for the class and invite students to discuss their reasoning before revealing the teaching point.</p></div>
+      <div class="project-prompt" id="projectPrompt">What makes a health information source trustworthy?</div>
+      <div class="project-actions"><button class="btn btn-secondary" id="nextPrompt">Next discussion prompt</button><button class="btn btn-primary" id="projectView">Focus presentation view</button></div>
+    </div>
+    <div class="panel exit-ticket" style="margin-top:18px">
+      <span class="small-label">END-OF-LESSON CHECK</span><h2>Quick exit ticket</h2><p>Students can answer on paper or discuss as a class. This version does not collect or transmit student responses.</p>
+      <ol id="exitQuestions"><li>What is one idea from today's lesson that you can explain in your own words?</li><li>What is one question you still have?</li><li>What is one reliable next step you could take in a similar situation?</li></ol>
+      <button class="btn btn-secondary" id="printExit">Print exit ticket</button>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="page" id="dictionary">
+  <div class="wrap page-head"><p class="eyebrow">A CLEAR PLACE TO START</p><h1>Health knowledge dictionary</h1><p>Explore age-appropriate explanations of common health and healthcare terms. These entries are educational starting points, not personal medical advice.</p></div>
+  <div class="wrap content-pad">
+    <div class="panel dictionary-search">
+      <label class="field-label" for="dictionarySearch">Search a term or question</label>
+      <input class="setup-input" id="dictionarySearch" type="search" placeholder="Try “immunity” or “healthcare provider”">
+      <div class="dictionary-tags" id="dictionaryTags"></div>
+    </div>
+    <div class="dictionary-grid" id="dictionaryResults" aria-live="polite"></div>
+    <div class="panel ask-panel">
+      <span class="small-label">ASK A COMMON QUESTION</span>
+      <h2>What have you been wondering about?</h2>
+      <p>Choose a question to read a short, reviewed-style educational explanation.</p>
+      <div id="questionLibrary" class="question-library"></div>
+      <div id="questionAnswer" class="question-answer" hidden aria-live="polite"></div>
+    </div>
+    <p class="small-print">For a personal health question, speak with a parent or caregiver, trusted adult, school nurse, or qualified healthcare professional. This site does not assess symptoms or recommend treatment.</p>
+  </div>
+</section>
+
+<section class="page" id="world">
+  <div class="wrap page-head"><p class="eyebrow">HEALTH IS A COMMUNITY EFFORT</p><h1>Global health field notes</h1><p>Explore how communities, public services, and health organizations work on shared health challenges. Each topic introduces a big idea and a question to think about.</p></div>
+  <div class="wrap content-pad">
+    <div class="world-intro panel"><span class="small-label">A WIDER PERSPECTIVE</span><h2>Health is shaped by more than individual choices.</h2><p>Clean water, safe places to learn and play, access to reliable information, and nearby healthcare services can all influence community health.</p></div>
+    <div class="world-grid" id="worldTopics"></div>
+    <div class="panel world-reflection"><span class="small-label">THINK LIKE A PUBLIC HEALTH RESEARCHER</span><h3>Consider the bigger picture</h3><p>Choose one topic above. What could an individual do, what could a school or community do, and what might require cooperation across regions or countries?</p><textarea id="worldReflection" class="setup-input" rows="3" placeholder="One connection I noticed is..."></textarea><button class="btn btn-primary" id="saveWorldReflection">Save reflection to my portfolio</button></div>
+  </div>
+</section>
+
+<section class="page" id="portfolio">
+  <div class="wrap page-head"><p class="eyebrow">YOUR LEARNING, IN ONE PLACE</p><h1>My learning portfolio</h1><p>See the lessons and activities you've explored, keep useful takeaways, and celebrate meaningful progress. Your portfolio is stored in this browser on this device.</p></div>
+  <div class="wrap content-pad">
+    <div class="portfolio-stats" id="portfolioStats"></div>
+    <div class="portfolio-grid">
+      <div class="panel"><div class="panel-title"><h3>Learning milestones</h3><span class="small-label">EARNED THROUGH PRACTICE</span></div><div class="achievement-grid" id="achievementGrid"></div></div>
+      <div class="panel"><div class="panel-title"><h3>Topics explored</h3><span class="small-label">YOUR PATHS</span></div><div id="topicProgress"></div></div>
+    </div>
+    <div class="panel" style="margin-top:16px"><div class="panel-title"><h3>Saved takeaways and reflections</h3><span class="small-label">ON THIS DEVICE</span></div><div id="portfolioTakeaways" class="takeaway-list"></div></div>
+    <div class="portfolio-actions"><button class="btn btn-secondary" id="exportPortfolio">Export my portfolio (.json)</button><button class="btn btn-secondary" id="printPortfolio">Print portfolio</button></div>
+    <p class="small-print">This prototype stores progress locally. It does not send student progress to teachers or a school. Clearing browser data may erase this portfolio.</p>
+  </div>
+</section>
+
+<section class="page" id="lessonbuilder">
+  <div class="wrap page-head"><p class="eyebrow">TEACHER CLASSROOM TOOLS</p><h1>Lesson builder</h1><p>Create a flexible classroom outline from Know Better's educational topics. Review and adapt the plan to your school's curriculum before teaching.</p></div>
+  <div class="wrap content-pad lesson-builder-grid">
+    <form class="panel lesson-builder-form" id="lessonBuilderForm">
+      <span class="small-label">PLAN YOUR SESSION</span>
+      <label class="field-label" for="builderTopic">Lesson topic</label>
+      <select class="setup-input" id="builderTopic">
+        <option value="health-info">Evaluating health information</option>
+        <option value="prevention">Everyday prevention and hygiene</option>
+        <option value="sleep">Sleep and well-being</option>
+        <option value="healthcare">Navigating healthcare conversations</option>
+        <option value="community">Community and global health</option>
+        <option value="decision">Responsible health decisions</option>
+      </select>
+      <label class="field-label" for="builderDuration">Class duration</label>
+      <select class="setup-input" id="builderDuration"><option value="20">20 minutes</option><option value="30" selected>30 minutes</option><option value="45">45 minutes</option><option value="60">60 minutes</option></select>
+      <label class="field-label" for="builderGrade">Grade band</label>
+      <select class="setup-input" id="builderGrade"><option>Grades 6–8</option><option>Grades 4–5</option><option>Grades 9–10</option></select>
+      <label class="field-label" for="builderFocus">Classroom emphasis</label>
+      <select class="setup-input" id="builderFocus"><option value="discussion">Discussion and collaboration</option><option value="practice">Interactive practice</option><option value="reflection">Reflection and written response</option></select>
+      <button class="btn btn-primary" type="submit">Build lesson outline</button>
+      <p class="small-print">Generated plans use fixed educational templates. No student information is collected.</p>
+    </form>
+    <div class="panel lesson-builder-output" id="lessonBuilderOutput" aria-live="polite"><span class="small-label">YOUR LESSON PLAN</span><h2>Your outline will appear here.</h2><p>Choose a topic and session length, then build a plan you can review, edit, and print.</p></div>
+  </div>
+</section>
+
+<section class="page" id="schoolsetup">
+  <div class="wrap page-head"><p class="eyebrow">FOR SCHOOL TEAMS</p><h1>School setup</h1><p>School-specific customization is being developed. Know Better's core learning experience remains available without accounts.</p></div>
+  <div class="wrap content-pad">
+    <div class="panel coming-soon-panel">
+      <div class="coming-stamp">IN DEVELOPMENT</div>
+      <p class="eyebrow">A BETTER CLASSROOM EXPERIENCE IS ON THE WAY</p>
+      <h2>School setup is coming soon.</h2>
+      <p>We're working on a thoughtful way for schools to add approved resources, verified support contacts, and classroom preferences. This feature will be introduced after the setup and privacy controls are ready for school review.</p>
+      <div class="coming-grid">
+        <div><strong>School profile</strong><span>Welcome messages and school identity</span></div>
+        <div><strong>Trusted contacts</strong><span>School-approved support information</span></div>
+        <div><strong>Classroom preferences</strong><span>Lesson settings and teaching resources</span></div>
+      </div>
+      <button class="btn btn-primary" data-page="classroom">Explore Teacher Classroom</button>
+    </div>
+  </div>
+</section>
+<section class="page" id="resources">
+  <div class="wrap page-head"><p class="eyebrow">KNOW WHERE TO TURN</p><h1>School support</h1><p>Knowing who can help is an important part of health literacy. School-specific contact information can be added here after an authorized school setup process is available.</p></div>
+  <div class="wrap content-pad">
+    <div class="resource-note"><strong>For schools: configure before sharing with students.</strong><p>The information below is a general starting point, not a directory for a specific school. A participating school should verify staff roles, office locations, contact methods, and emergency procedures with its administration.</p></div>
+    <div id="schoolSupportSchoolInfo" class="panel" hidden style="margin-bottom:18px"></div>
+    <div class="resource-grid">
+      <article class="panel resource-card"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg></div><h3>School nurse</h3><p>Can help with health-related questions at school and explain the school's process for getting appropriate support.</p><span class="small-label">Ask where the health office is located.</span></article>
+      <article class="panel resource-card"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-9.5A7.5 7.5 0 0 1 10.5 4h2A7.5 7.5 0 0 1 20 11.5Z"/><path d="M8 11h8M8 14h5"/></svg></div><h3>School counselor</h3><p>Can listen and help students navigate school concerns, friendships, emotions, and available support.</p><span class="small-label">Ask how students can make an appointment.</span></article>
+      <article class="panel resource-card"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div><h3>Trusted school adult</h3><p>A teacher, coach, or staff member can help a student find the right person to speak with.</p><span class="small-label">Identify an adult you can approach.</span></article>
+    </div>
+    <div class="panel" style="padding:22px;margin-top:15px"><h3 style="font-size:15px;color:var(--ink)">If you are worried about someone's immediate safety</h3><p style="font-size:12px;color:var(--muted);margin:6px 0 0">Tell a trusted adult or school staff member right away. If there is an immediate emergency, contact local emergency services. Follow your school's approved safety procedures.</p></div>
+  </div>
+</section>
+</main>
+
+<footer><strong>Know <span>Better</span></strong><p>Building knowledge. Practicing skills. Making informed choices.</p><small>Know Better is an educational resource, not a substitute for professional medical advice.</small></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+
+<script>
+const paths = [
+ {id:"foundations",title:"Health Foundations",desc:"Understand health literacy and how everyday choices connect to well-being.",icon:"book",lessons:[
+  {id:"health-literacy",title:"What is health literacy?",intro:"Health literacy is more than knowing health facts. It includes finding, understanding, and using information to make informed decisions.",sections:[["The bigger picture","Health information appears in conversations, classrooms, websites, videos, and healthcare settings. Health literacy helps you make sense of it."],["Three useful skills","Finding information means knowing where to look. Understanding means interpreting what it says. Using information means deciding what questions to ask or what reliable next step to take."],["It is okay to ask questions","You do not need to understand everything immediately. Asking a trusted adult or qualified professional to explain something is a responsible choice."]],takeaway:"Health literacy is a skill you can build. It is not about having every answer."},
+  {id:"health-decisions",title:"Making informed decisions",intro:"A thoughtful decision starts with understanding the situation, checking information, and knowing when to ask for help.",sections:[["Pause before acting","When something sounds urgent or surprising, pause. Notice what you know, what you do not know, and whether the information comes from a trustworthy source."],["Consider the context","A tip that worked for one person may not apply to everyone. Be cautious about advice that promises the same result for all people."],["Choose a reliable next step","For questions about your own health, speak with a parent or guardian, school nurse, or qualified healthcare professional rather than relying on social media."]],takeaway:"Good decisions are informed, thoughtful, and willing to ask for help."},
+  {id:"health-team",title:"Who is on a healthcare team?",intro:"Different professionals have different roles. Knowing this can make healthcare settings feel easier to navigate.",sections:[["Different roles","Doctors assess health concerns and coordinate care. Nurses provide care, education, and support. Pharmacists are medication experts. Other professionals may focus on areas such as vision, hearing, or movement."],["You can participate","Patients and families can ask what a term means, why a step is recommended, and who to contact with follow-up questions."],["Respect and privacy","Healthcare conversations should be handled respectfully. If you are unsure what information to share or who can see it, ask the healthcare professional to explain the privacy rules."]],takeaway:"Healthcare is a team effort, and asking clear questions is part of participating."}]},
+ {id:"body",title:"Understanding Your Body",desc:"Learn general body systems, changes during adolescence, and how to interpret body-related information.",icon:"body",lessons:[
+  {id:"body-systems",title:"Your body works as a system",intro:"Body systems work together. Understanding the big picture can make health and science information easier to follow.",sections:[["Systems work together","The respiratory system brings oxygen into the body. The circulatory system moves blood. The digestive system processes food. These systems interact rather than working alone."],["Different bodies, different experiences","People can have different experiences and timelines. A general educational description cannot predict exactly what is happening for one individual."],["Reliable questions","If you have a question about your own body, ask a trusted adult or qualified healthcare professional who can consider your individual situation."]],takeaway:"The body is made of connected systems, and individual experiences can vary."},
+  {id:"adolescence",title:"Understanding adolescence",intro:"Adolescence is a period of development. Learning about it can help you understand why people may experience changes at different times.",sections:[["Development is not identical","People develop at different rates. Comparing yourself with classmates or online images is not a reliable way to judge health or development."],["Many kinds of change","Development can involve physical, emotional, social, and cognitive changes. These changes do not happen on one universal schedule."],["Finding trustworthy information","Look for age-appropriate information from recognized health organizations and ask a trusted adult or healthcare professional when something is unclear."]],takeaway:"There is a wide range of normal development. Personal questions deserve respectful, qualified guidance."},
+  {id:"body-information",title:"Reading body-related claims",intro:"Health claims about the body can be confusing. Learn to separate general science from claims that make unsupported promises.",sections:[["Watch for sweeping promises","Be cautious when a post claims one product, routine, or trick will work for everyone."],["Look for context","A useful explanation describes what is known, what is uncertain, and where the information came from."],["Ask instead of guessing","A general article cannot evaluate an individual's health. For personal concerns, involve a trusted adult and qualified professional."]],takeaway:"Look for careful explanations, not one-size-fits-all promises."}]},
+ {id:"wellbeing",title:"Mental & Emotional Well-Being",desc:"Build everyday understanding of emotions, stress, supportive communication, and seeking help.",icon:"mind",lessons:[
+  {id:"emotions",title:"Understanding emotions",intro:"Emotions are part of how people respond to experiences. Learning to name them can help with communication.",sections:[["Emotions carry information","Feelings can be influenced by events, relationships, sleep, stress, and many other factors. No single feeling defines a person."],["Notice without judging","It can help to pause and identify an emotion in simple words, such as frustrated, excited, worried, or disappointed."],["Talk with someone","If emotions feel difficult to manage or are affecting daily life, talking with a trusted adult or qualified professional can help."]],takeaway:"Emotions are experiences, not labels. You deserve support when you need it."},
+  {id:"stress",title:"Everyday stress and support",intro:"Stress can show up during busy or challenging periods. Learning about support options is a useful life skill.",sections:[["Recognize stressors","Schoolwork, changes, social situations, and responsibilities can all feel demanding. People respond differently to similar situations."],["Use supportive routines","Some people find it helpful to take a break, organize tasks, spend time on a calming activity, or talk with someone they trust."],["Know when to reach out","If stress is persistent, overwhelming, or interfering with everyday activities, tell a trusted adult, school counselor, or healthcare professional."]],takeaway:"You do not have to solve every challenge alone. Reaching out is a practical next step."},
+  {id:"supportive-friend",title:"Being a supportive friend",intro:"You can support someone without trying to become their counselor or solve everything yourself.",sections:[["Listen respectfully","Give someone space to explain what they want to share. Avoid making fun of their feelings or immediately comparing their experience with yours."],["Do not promise secrecy about safety","If someone may be in danger or needs help, involve a trusted adult. Getting support matters more than keeping a difficult situation to yourself."],["Know your role","You can be kind and supportive, but trained adults and professionals are better equipped to help with serious concerns."]],takeaway:"Be a caring friend, and bring in a trusted adult when someone needs more support."}]},
+ {id:"everyday",title:"Everyday Health Habits",desc:"Explore sleep, hygiene, movement, and nutrition through balanced, age-appropriate information.",icon:"habits",lessons:[
+  {id:"sleep",title:"Why sleep matters",intro:"Sleep supports learning, memory, mood, and many everyday body functions.",sections:[["Sleep and learning","Sleep helps the brain process and organize information. Consistent rest can support attention and learning."],["Build a steady routine","A regular wind-down routine and a comfortable sleep environment may make it easier to prepare for rest. Schedules and needs can vary."],["When sleep is difficult","If sleep problems continue or affect daily life, talk with a parent or guardian and a healthcare professional."]],takeaway:"Sleep is an important part of overall well-being, and routines can support it."},
+  {id:"hygiene",title:"Everyday hygiene",intro:"Hygiene habits help people care for themselves and reduce the spread of some germs.",sections:[["Handwashing","Washing hands with soap and water at appropriate times is a practical way to reduce the spread of germs."],["Cough and sneeze etiquette","Using a tissue or your elbow and cleaning your hands afterward can help protect people nearby."],["Shared spaces","Avoid sharing personal items such as toothbrushes. Follow school guidance for cleaning shared equipment and surfaces."]],takeaway:"Small hygiene habits can help protect both you and the people around you."},
+  {id:"nutrition",title:"Understanding nutrition",intro:"Nutrition is about how food provides energy and nutrients that support many body functions. It is not a test of worth or a reason to judge bodies.",sections:[["Many nutrients have roles","Different foods provide different combinations of nutrients. Variety can help people get what their bodies need."],["Food information needs context","A single label, trend, or online rule does not tell the whole story. Be cautious of posts that classify foods as morally good or bad."],["Personal needs vary","Food needs can vary with age, activity, culture, health, and other factors. For personal nutrition questions, speak with a qualified healthcare professional or registered dietitian with a trusted adult."]],takeaway:"Nutrition education should support health, flexibility, and respect for different needs."}]},
+ {id:"safety",title:"Everyday Safety",desc:"Practice prevention, recognizing reliable safety guidance, and knowing when to involve an adult.",icon:"shield",lessons:[
+  {id:"prevention",title:"Prevention in shared spaces",intro:"Everyday prevention includes habits that lower risk and help keep shared environments safer.",sections:[["Notice your surroundings","Pay attention to posted instructions, school procedures, and changes in your environment."],["Follow trusted guidance","Use instructions from responsible adults and relevant public health or safety organizations rather than unverified posts."],["Speak up early","If something seems unsafe, tell a teacher, staff member, or another trusted adult. Do not try to handle a dangerous situation alone."]],takeaway:"Prevention is often about noticing, following reliable guidance, and asking for help."},
+  {id:"medicine-safety",title:"Medicine safety basics",intro:"Medicines can help when used appropriately, but they are not items to experiment with or share.",sections:[["Never share medicines","A medicine prescribed or recommended for one person may not be appropriate for someone else."],["Use adult guidance","Only take medicine with the guidance and permission of a parent or guardian and the appropriate healthcare professional, following the label or instructions provided."],["Ask when unsure","Do not guess about a medicine, dose, or product. Ask a trusted adult or pharmacist for help."]],takeaway:"Never share or experiment with medicines. Ask a trusted adult and qualified professional."},
+  {id:"emergency-awareness",title:"Knowing when to get help",intro:"Recognizing when a situation needs adult or emergency support is an important safety skill.",sections:[["Do not manage emergencies alone","If someone may be in immediate danger, alert a nearby responsible adult or school staff member right away."],["Use local procedures","Schools should teach students their approved emergency procedures and who to contact."],["When it is urgent","For an immediate emergency, contact local emergency services and follow instructions from trained responders."]],takeaway:"In urgent situations, get responsible adult and emergency help rather than trying to handle it alone."}]},
+ {id:"information",title:"Health Information Skills",desc:"Recognize misinformation, understand sources, and communicate clearly about health information.",icon:"search",lessons:[
+  {id:"source-check",title:"How to check a source",intro:"A source's identity and expertise help you decide how much confidence to place in its information.",sections:[["Find the original","Try to locate the original article, organization, or research rather than relying only on a screenshot or repost."],["Consider expertise","Ask whether the source has relevant knowledge and whether its purpose is to inform, sell, entertain, or persuade."],["Look for transparency","Trustworthy information usually explains where claims come from and acknowledges limits or uncertainty."]],takeaway:"Check who is speaking, what their expertise is, and how they support their claims."},
+  {id:"misinformation",title:"Spotting misinformation",intro:"Misinformation is inaccurate or misleading information, whether or not the person sharing it intends to mislead.",sections:[["Notice warning signs","Be cautious of dramatic claims, guaranteed results, pressure to share quickly, or advice that says to ignore qualified professionals."],["Verify before sharing","Search for the claim from independent, reputable sources. Check whether the evidence actually supports the wording of the post."],["Respond thoughtfully","You can choose not to share an unverified claim. If correcting it, be respectful and point toward reliable information."]],takeaway:"Pause and verify before passing health information along."},
+  {id:"health-questions",title:"Asking clear health questions",intro:"Clear questions can help you understand information and participate in conversations with trusted adults and professionals.",sections:[["Be specific","You can ask someone to explain a word, repeat a point, or describe what happens next."],["Check your understanding","Try saying what you understood in your own words and ask whether you have it right."],["Bring support","For a healthcare conversation, a parent, guardian, or trusted adult may help you prepare questions and understand the answers."]],takeaway:"Asking questions is a strength. You are allowed to ask for explanations."}]}
+];
+const scenarios=[
+ {category:"DIGITAL HEALTH LITERACY",title:"The group chat claim",prompt:"A classmate shares a health tip in your group chat. They say it is guaranteed to work and encourage everyone to try it. The post does not name a source or explain where the information came from.",options:["Believe it because someone you know shared it.","Check who created the claim and look for reliable supporting sources.","Share it with more people so they can decide."],correct:1,why:"Checking who created a claim and looking for supporting evidence helps you evaluate health information. Compare it with other reliable sources. If you are unsure, ask a trusted adult or health professional."},
+ {category:"EVERYDAY SAFETY",title:"A medicine offered by a friend",prompt:"A friend offers you a medicine they use when they feel unwell. You do not know whether it is suitable for you.",options:["Take it because your friend says it helps.","Ask a trusted adult and do not take medicine that was not meant for you.","Take a smaller amount to be cautious."],correct:1,why:"Medicines should never be shared or tried based on a friend's experience. Ask a parent or guardian and an appropriate healthcare professional or pharmacist."},
+ {category:"HEALTH INFORMATION",title:"The dramatic headline",prompt:"You see a headline claiming that a common everyday habit is dangerous for absolutely everyone. The post links to no evidence.",options:["Assume the headline is accurate because it sounds serious.","Check the original source, evidence, and other reputable sources.","Forward it to your class so everyone is warned."],correct:1,why:"Dramatic, universal claims need careful checking. Look for the original source and evidence, then compare with reliable organizations before deciding what the information means."},
+ {category:"SUPPORTING OTHERS",title:"A friend seems overwhelmed",prompt:"A friend tells you that school and other responsibilities have been feeling like too much. They ask you not to tell anyone, but you are worried they need more support.",options:["Promise to keep everything secret no matter what.","Listen respectfully and encourage them to talk with a trusted adult. If safety is a concern, involve an adult.","Tell several classmates so they can help."],correct:1,why:"You can listen and be supportive, but you should not carry a serious concern alone or promise secrecy about safety. A trusted adult or school counselor can help."},
+ {category:"SLEEP & WELL-BEING",title:"The one-size-fits-all routine",prompt:"A video says every student should follow exactly the same sleep schedule and claims that anyone who does not is doing something wrong.",options:["Follow the video exactly because it sounds confident.","Look for age-appropriate information from reliable sources and remember that needs can vary.","Assume sleep does not matter if routines differ."],correct:1,why:"Sleep is important, but individual needs and schedules can vary. Use reliable age-appropriate information and talk with a trusted adult or healthcare professional about ongoing concerns."},
+ {category:"SCHOOL SUPPORT",title:"You are unsure who to ask",prompt:"You have a question about a health topic at school, but you are not sure which staff member can help.",options:["Guess based on what classmates say.","Ask a teacher or trusted staff member to help you find the school nurse or appropriate support.","Post the question publicly online with personal details."],correct:1,why:"A trusted staff member can help you find the appropriate school resource. Avoid posting private information publicly."}
+];
+const reviewQuestions=[
+ {q:"Which action is part of health literacy?",opts:["Memorizing every medical term","Finding, understanding, and using reliable information","Following every popular health trend"],a:1,why:"Health literacy includes finding, understanding, and using information to make informed decisions."},
+ {q:"A post promises the same health result for everyone. What is a useful response?",opts:["Be cautious and check the evidence","Trust it if it has many likes","Share it before it disappears"],a:0,why:"Universal guarantees are a reason to pause and investigate the source and evidence."},
+ {q:"What should you do if a friend offers you their medicine?",opts:["Try a little","Take it only if they used it before","Do not take it; ask a trusted adult"],a:2,why:"Medicines should not be shared. Ask a trusted adult and qualified professional."},
+ {q:"Which is a supportive way to help a friend?",opts:["Promise never to involve an adult","Listen and help connect them with a trusted adult when needed","Tell other students their private information"],a:1,why:"Listening respectfully and involving a trusted adult when needed helps someone access appropriate support."},
+ {q:"What can help you evaluate an online health source?",opts:["Its number of followers","Whether it makes exciting claims","Its author, expertise, evidence, and publication date"],a:2,why:"Source identity, expertise, evidence, and date all help you evaluate information."},
+ {q:"What is a good next step when you do not understand a healthcare term?",opts:["Pretend you understand","Ask the professional or a trusted adult to explain it","Search random comments for an answer"],a:1,why:"Asking for an explanation is a useful part of participating in healthcare conversations."}
+];
+
+// Additional reviewed question variations keep practice useful beyond the first few visits.
+reviewQuestions.push(
+ {q:"A website uses medical words but does not name its authors. What should you check?",opts:["Whether the information has a clear author and reliable supporting sources","Whether the page has colorful graphics","Whether it appears first in search results"],a:0,why:"Professional-sounding language does not prove reliability. Check authorship, expertise, evidence, and review information."},
+ {q:"A health article links to a study, but the study does not support the headline. What matters most?",opts:["The headline is always more important","The actual evidence and what the study really examined","How many people shared the article"],a:1,why:"Read beyond the headline. Check what the research actually studied and whether the article represents it fairly."},
+ {q:"You hear an unfamiliar healthcare term during an appointment. What can you say?",opts:["Could you explain that term in simpler words?","Nothing, because asking might be rude","I will guess what it means"],a:0,why:"Asking for plain-language explanations is appropriate and helps you understand information."},
+ {q:"A friend tells you a private concern and says you must handle it alone. What is a helpful response?",opts:["Agree to manage it without support","Listen and help them connect with a trusted adult","Post about it anonymously"],a:1,why:"Friends can listen and care, but serious concerns should not be carried alone. A trusted adult can help."},
+ {q:"Why should health information include a date?",opts:["Dates make a page look official","Some recommendations and evidence can change over time","Older information is always wrong"],a:1,why:"A date helps readers understand when information was published or reviewed. Older information is not automatically wrong, but it may need checking."},
+ {q:"What is a useful way to compare two health sources?",opts:["Choose the one with the strongest wording","Compare expertise, evidence, transparency, and agreement with other reputable sources","Choose the shortest one"],a:1,why:"Comparing source quality and evidence is more useful than judging by confidence, length, or popularity."},
+ {q:"Why do body systems need to be understood as connected?",opts:["Because one system always works alone","Because systems interact and support the body's functions together","Because every person has identical experiences"],a:1,why:"Body systems interact. Learning about those connections helps explain general biology without assuming every individual is the same."},
+ {q:"Two students develop at different times. What is the best conclusion?",opts:["One must be doing something wrong","Development can happen on different timelines","A social media post can determine who is healthy"],a:1,why:"Development varies. Comparing classmates is not a reliable way to evaluate someone's health."},
+ {q:"Which statement about emotions is most helpful?",opts:["One emotion defines a person","Emotions can be influenced by many experiences and do not define someone's identity","People should never talk about emotions"],a:1,why:"Emotions are experiences. Naming them and communicating with a trusted person can support understanding."},
+ {q:"A student feels overwhelmed by school responsibilities. What is a reasonable first step?",opts:["Keep it secret from everyone","Talk with a trusted adult or school counselor about support","Assume everyone else has it figured out"],a:1,why:"A trusted adult or school counselor can help a student identify appropriate support and next steps."},
+ {q:"Which action can help reduce the spread of germs in shared spaces?",opts:["Follow school hygiene guidance and wash hands at appropriate times","Share personal hygiene items","Ignore posted cleaning instructions"],a:0,why:"Handwashing and following reasonable hygiene guidance can help reduce the spread of some germs."},
+ {q:"Why is it not appropriate to share medicine with a friend?",opts:["The same medicine is always suitable for everyone","A medicine intended for one person may not be appropriate for another","Medicine works only if shared"],a:1,why:"Medicines should not be shared. A trusted adult and qualified healthcare professional or pharmacist can help with questions."},
+ {q:"You notice a safety concern at school. What should you do?",opts:["Try to handle a dangerous situation alone","Tell a teacher or trusted school staff member","Wait until it becomes more serious"],a:1,why:"Tell a responsible adult or school staff member. Students should not put themselves in danger trying to manage a hazard."},
+ {q:"What is the role of a school nurse?",opts:["To replace every healthcare professional","To provide school-based health support and explain school processes","To diagnose every condition from a website"],a:1,why:"A school nurse can provide school-based support and help students understand how to access appropriate care."},
+ {q:"You are unsure which school staff member can answer a question. What is a good next step?",opts:["Ask a trusted teacher or staff member to help you find the right resource","Share private details in a public group chat","Assume there is no one to ask"],a:0,why:"A trusted staff member can direct you to the appropriate school resource."},
+ {q:"A post says you must share it immediately or something bad will happen. What is a warning sign?",opts:["It creates pressure and urgency instead of offering verifiable evidence","It has a publication date","It names its sources"],a:0,why:"Pressure to share quickly is a reason to pause and verify a claim before passing it along."},
+ {q:"What does it mean when a health source acknowledges uncertainty?",opts:["It is automatically unreliable","It is being transparent about what is known and what is not known","It proves the author knows nothing"],a:1,why:"Responsible explanations describe limits and uncertainty instead of pretending every question has a simple answer."},
+ {q:"Why might a tip that helped one person not be right for everyone?",opts:["People have different circumstances and needs","Everyone should copy the same routine","Personal experiences are always scientific proof"],a:0,why:"Individual experiences differ. Personal health questions should be discussed with a trusted adult and qualified professional."},
+ {q:"What should you do before reposting a surprising health claim?",opts:["Check the original source and supporting evidence","Assume it is true if it is popular","Remove the author's name and share it"],a:0,why:"Verify the source and evidence before sharing. Reposting can spread misleading information."},
+ {q:"Which is an example of participating in a healthcare conversation?",opts:["Asking what happens next and checking your understanding","Avoiding all questions","Pretending to understand every word"],a:0,why:"Asking questions and restating what you understood can help make a healthcare conversation clearer."},
+ {q:"What is a helpful way to support a classmate without spreading their private information?",opts:["Tell several classmates","Listen respectfully and encourage them to speak with a trusted adult","Post the story without their name"],a:1,why:"Respect privacy and help connect the person with appropriate support rather than sharing their situation."},
+ {q:"Which statement about nutrition education is most appropriate?",opts:["Food choices determine a person's worth","Nutrition information should be flexible, respectful, and considered in context","One online rule works for every person"],a:1,why:"Nutrition needs vary. Education should support health and respect, not shame, rigid rules, or comparisons."},
+ {q:"What is a good reason to use more than one reputable source?",opts:["To see whether independent sources support the same information","To find a source that agrees with what you already believe","To avoid checking the original claim"],a:0,why:"Independent sources can help you check whether a claim is represented accurately and supported by evidence."},
+ {q:"What should a student do if a situation involves immediate danger?",opts:["Try to solve it alone","Alert a nearby responsible adult or school staff member and follow approved emergency procedures","Wait to ask about it next week"],a:1,why:"In immediate danger, get help from a responsible adult or emergency services and follow the school's approved procedures."}
+);
+
+const storageKey="knowbetter-progress-v3";
+let progress={completed:[],scenarios:0,reviews:0,missedQuestions:[],savedTakeaways:[],challengeDone:[],lastLesson:null};
+try{const saved=JSON.parse(localStorage.getItem(storageKey)||"null");if(saved&&Array.isArray(saved.completed))progress={...progress,...saved,savedTakeaways:Array.isArray(saved.savedTakeaways)?saved.savedTakeaways:[],missedQuestions:Array.isArray(saved.missedQuestions)?saved.missedQuestions:[],challengeDone:Array.isArray(saved.challengeDone)?saved.challengeDone:[]}}catch(e){}
+function saveProgress(){try{localStorage.setItem(storageKey,JSON.stringify(progress))}catch(e){}updateDashboard()}
+function totalLessons(){return paths.reduce((n,p)=>n+p.lessons.length,0)}
+function updateDashboard(){
+ const total=totalLessons(),done=progress.completed.length;
+ document.getElementById("progressText").textContent=`${done} of ${total}`;
+ document.getElementById("progressFill").style.width=`${Math.min(100,done/total*100)}%`;
+ document.getElementById("lessonStat").textContent=done;
+ document.getElementById("scenarioStat").textContent=progress.scenarios||0;
+ document.getElementById("reviewStat").textContent=progress.reviews||0;
+ renderPathCards();renderPersonalDashboard();
+}
+function renderPathCards(){
+ const markup=paths.map(p=>{const done=p.lessons.filter(l=>progress.completed.includes(l.id)).length;return `<button class="path-card" data-path="${p.id}"><span class="icon-box">${iconSvg(p.icon)}</span><h3>${p.title}</h3><p>${p.desc}</p><span class="path-meta"><span>${done}/${p.lessons.length} lessons</span><span>Explore →</span></span></button>`}).join("");
+ document.getElementById("homePaths").innerHTML=markup;
+ document.getElementById("allPaths").innerHTML=paths.map(p=>{const done=p.lessons.filter(l=>progress.completed.includes(l.id)).length;return `<div class="path-row"><span class="icon-box">${iconSvg(p.icon)}</span><div><h3>${p.title}</h3><p>${p.desc}</p><div class="progress-row" style="max-width:340px;margin:9px 0 0"><span>${done} of ${p.lessons.length} lessons completed</span><span>${Math.round(done/p.lessons.length*100)}%</span></div><div class="progress-track" style="max-width:340px"><div class="progress-fill" style="width:${done/p.lessons.length*100}%"></div></div></div><button class="btn btn-secondary" data-path="${p.id}">Open path</button></div>`}).join("");
+}
+function iconSvg(name){
+ const icons={
+ book:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5z"/><path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H20"/></svg>',
+ body:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="5" r="2.5"/><path d="M8 21v-5l-2-3 2-5h8l2 5-2 3v5M8 13h8"/></svg>',
+ mind:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M9 4a3 3 0 0 0-5 2.2A3.5 3.5 0 0 0 4 13a3 3 0 0 0 3 5h2M15 4a3 3 0 0 1 5 2.2A3.5 3.5 0 0 1 20 13a3 3 0 0 1-3 5h-2M12 3v18M8 9h4m0 6h4"/></svg>',
+ habits:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11Z"/><path d="M8 12h8"/></svg>',
+ shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg>',
+ search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>'
+ };
+ return icons[name]||icons.book;
+}
+let currentPath=null,currentLesson=null;
+function openPath(pathId,lessonId){
+ currentPath=paths.find(p=>p.id===pathId);if(!currentPath)return;
+ currentLesson=currentPath.lessons.find(l=>l.id===lessonId)||currentPath.lessons[0];
+ renderLesson();showPage("lesson");
+}
+function renderLesson(){
+ document.getElementById("lessonEyebrow").textContent=currentPath.title.toUpperCase();
+ document.getElementById("lessonPathTitle").textContent=currentPath.title;
+ document.getElementById("lessonIntro").textContent=currentPath.desc;
+ document.getElementById("lessonMenu").innerHTML=currentPath.lessons.map(l=>`<button class="lesson-link ${l.id===currentLesson.id?"active":""}" data-lesson="${l.id}">${l.title}${progress.completed.includes(l.id)?" ✓":""}</button>`).join("");
+ const sections=currentLesson.sections.map((s,i)=>`<h3 style="font-size:14px;color:var(--ink);margin:20px 0 5px">${s[0]}</h3><p>${s[1]}</p>`).join("");
+ const done=progress.completed.includes(currentLesson.id);
+ document.getElementById("lessonContent").innerHTML=`<div class="sequence-rail"><span class="sequence-active">01 · LEARN</span><span>02 · PRACTICE</span><span>03 · APPLY</span><span>04 · REFLECT</span></div><span class="small-label">${currentPath.title.toUpperCase()} · LESSON ${currentPath.lessons.indexOf(currentLesson)+1} OF ${currentPath.lessons.length}</span><h2>${currentLesson.title}</h2><p>${currentLesson.intro}</p>${sections}<div class="lesson-callout"><strong>Key takeaway</strong><p>${currentLesson.takeaway}</p></div><div class="lesson-apply"><span class="small-label">03 · APPLY</span><h3>Put the idea into practice</h3><p>Try a fictional decision-making scenario and consider how this lesson could help.</p><button class="btn btn-secondary" data-page="scenarios">Open scenario lab</button></div><div class="lesson-reflect"><span class="small-label">04 · REFLECT</span><label class="field-label" for="lessonReflection">What is one idea you want to remember?</label><textarea id="lessonReflection" rows="3" placeholder="One thing I learned is..."></textarea><button class="btn btn-secondary" id="saveLessonTakeaway">Save to My Takeaways</button></div><div class="lesson-actions"><button class="btn ${done?"btn-secondary":"btn-primary"}" id="completeLesson">${done?"Completed ✓":"Mark lesson complete"}</button><button class="btn btn-secondary" id="nextLesson">${currentPath.lessons.indexOf(currentLesson)===currentPath.lessons.length-1?"Back to learning paths":"Next lesson →"}</button><span class="small-label">${done?"Saved on this device":"Your progress is saved on this device"}</span></div>`;
+}
+function showPage(id){
+ const target=document.getElementById(id);if(!target)return;
+ document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
+ document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",b.dataset.page===id || (id==="lesson"&&b.dataset.page==="paths")));
+ document.getElementById("nav").classList.remove("open");document.getElementById("menuToggle").setAttribute("aria-expanded","false");
+ window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
+}
+document.addEventListener("click",e=>{
+ const pageButton=e.target.closest("[data-page]");if(pageButton){showPage(pageButton.dataset.page);return}
+ const pathButton=e.target.closest("[data-path]");if(pathButton){openPath(pathButton.dataset.path);return}
+ const lessonButton=e.target.closest("[data-lesson]");if(lessonButton&&currentPath){currentLesson=currentPath.lessons.find(l=>l.id===lessonButton.dataset.lesson);renderLesson()}
+});
+document.getElementById("menuToggle").addEventListener("click",()=>{const nav=document.getElementById("nav"),open=nav.classList.toggle("open");document.getElementById("menuToggle").setAttribute("aria-expanded",String(open))});
+document.getElementById("lessonContent").addEventListener("click",e=>{
+ if(e.target.id==="saveLessonTakeaway"){const value=document.getElementById("lessonReflection").value.trim();if(value.length<8){toast("Write a little more before saving.");return}saveTakeaway(currentLesson.title,value);toast("Takeaway saved on this device.")}
+ if(e.target.id==="completeLesson"){if(!progress.completed.includes(currentLesson.id)){progress.completed.push(currentLesson.id);saveProgress();toast("Lesson progress saved.");}renderLesson()}
+ if(e.target.id==="nextLesson"){const i=currentPath.lessons.indexOf(currentLesson);if(i<currentPath.lessons.length-1){currentLesson=currentPath.lessons[i+1];renderLesson();document.getElementById("lessonContent").scrollIntoView({behavior:"smooth",block:"start"})}else showPage("paths")}
+});
+let scenarioIndex=0;
+function renderScenario(){
+ const s=scenarios[scenarioIndex];document.getElementById("scenarioCategory").textContent=s.category;document.getElementById("scenarioCounter").textContent=`CHALLENGE ${String(scenarioIndex+1).padStart(2,"0")} · ROTATING SET`;
+ document.getElementById("scenarioTitle").textContent=s.title;document.getElementById("scenarioPrompt").textContent=s.prompt;document.getElementById("scenarioFeedback").hidden=true;
+ document.getElementById("scenarioAnswers").innerHTML=s.options.map((o,i)=>`<button class="answer" data-scenario-answer="${i}"><span class="answer-letter">${String.fromCharCode(65+i)}</span><span>${o}</span></button>`).join("");
+}
+document.getElementById("scenarioAnswers").addEventListener("click",e=>{
+ const b=e.target.closest("[data-scenario-answer]");if(!b)return;const s=scenarios[scenarioIndex],choice=Number(b.dataset.scenarioAnswer),correct=choice===s.correct;
+ document.querySelectorAll("[data-scenario-answer]").forEach((x,i)=>{x.disabled=true;if(i===s.correct)x.classList.add("correct");else if(i===choice)x.classList.add("incorrect")});
+ document.getElementById("scenarioFeedbackTitle").textContent=correct?"That is the strongest next step.":"A useful point to remember";
+ document.getElementById("scenarioFeedbackText").textContent=s.why;document.getElementById("scenarioFeedback").hidden=false;
+ progress.scenarios=(progress.scenarios||0)+1;saveProgress();
+ document.getElementById("nextScenario").textContent=scenarioIndex===scenarios.length-1?"Start again":"Next scenario";
+});
+document.getElementById("nextScenario").addEventListener("click",()=>{scenarioIndex=(scenarioIndex+1)%scenarios.length;renderScenario()});
+document.getElementById("checkMyth").addEventListener("click",()=>{
+ const checked=[...document.querySelectorAll('#mythChecks input:checked')].map(x=>x.value);
+ const result=document.getElementById("mythResult");result.hidden=false;
+ result.textContent=checked.length===4?"You spotted all four warning signs. The missing source, sweeping guarantee, lack of evidence, and missing review date all mean the claim needs careful checking.":`You identified ${checked.length} of 4 warning signs. Look again for the missing source, the universal guarantee, the lack of evidence, and the missing review date.`;
+});
+let reviewOrder=[],reviewIndex=0,reviewScore=0,reviewAnswered=false,reviewStarted=false;
+let previousReviewSet="";
+function startReview(){
+ let candidate=[];
+ const missed=(progress.missedQuestions||[]).filter((v,i,a)=>a.indexOf(v)===i&&Number.isInteger(v));
+ const priority=missed.sort(()=>Math.random()-.5).slice(0,2);
+ for(let attempt=0;attempt<8;attempt++){
+  const pool=[...reviewQuestions.keys()].filter(i=>!priority.includes(i)).sort(()=>Math.random()-.5);
+  candidate=[...priority,...pool.slice(0,4-priority.length)].sort(()=>Math.random()-.5);
+  const signature=[...candidate].sort((a,b)=>a-b).join(",");
+  if(signature!==previousReviewSet){previousReviewSet=signature;break}
+ }
+ reviewOrder=candidate;reviewIndex=0;reviewScore=0;reviewStarted=true;renderReview()
+}
+function renderReview(){
+ const q=reviewQuestions[reviewOrder[reviewIndex]];
+ document.getElementById("reviewRound").textContent=`QUICK REVIEW · QUESTION ${reviewIndex+1} OF ${reviewOrder.length}`;
+ document.getElementById("reviewBar").style.width=`${reviewIndex/reviewOrder.length*100}%`;
+ document.getElementById("reviewQuestion").textContent=q.q;document.getElementById("reviewPrompt").textContent="Choose the best answer.";
+ document.getElementById("reviewOptions").innerHTML=q.opts.map((o,i)=>`<button class="review-option" data-review="${i}">${String.fromCharCode(65+i)}. ${o}</button>`).join("");
+ document.getElementById("reviewFeedback").hidden=true;document.getElementById("reviewAction").textContent="Check answer";reviewAnswered=false;
+}
+document.getElementById("reviewAction").addEventListener("click",()=>{
+ if(!reviewStarted){startReview();return}
+ if(!reviewAnswered){const chosen=document.querySelector(".review-option.chosen");if(!chosen){toast("Choose an answer first.");return}
+ const q=reviewQuestions[reviewOrder[reviewIndex]],correct=Number(chosen.dataset.review)===q.a;if(correct)reviewScore++;else{progress.missedQuestions=progress.missedQuestions||[];if(!progress.missedQuestions.includes(reviewOrder[reviewIndex]))progress.missedQuestions.push(reviewOrder[reviewIndex]);saveProgress()}
+ document.querySelectorAll(".review-option").forEach((b,i)=>{b.disabled=true;if(i===q.a)b.style.borderColor="#80b7a7"});
+ const fb=document.getElementById("reviewFeedback");fb.hidden=false;fb.textContent=(correct?"Correct. ":"Not quite. ")+q.why;
+ reviewAnswered=true;document.getElementById("reviewAction").textContent=reviewIndex===reviewOrder.length-1?"See results":"Next question";
+ }else if(reviewIndex<reviewOrder.length-1){reviewIndex++;renderReview()}else{
+ progress.reviews=(progress.reviews||0)+1;saveProgress();document.getElementById("reviewRound").textContent="REVIEW COMPLETE";document.getElementById("reviewBar").style.width="100%";document.getElementById("reviewQuestion").textContent=`You got ${reviewScore} out of ${reviewOrder.length}.`;document.getElementById("reviewPrompt").textContent="Review the explanations and return whenever you want to practice again.";document.getElementById("reviewOptions").innerHTML="";document.getElementById("reviewFeedback").hidden=true;document.getElementById("reviewAction").textContent="Start another round";reviewStarted=false;
+ }
+});
+document.getElementById("reviewOptions").addEventListener("click",e=>{const b=e.target.closest("[data-review]");if(!b||reviewAnswered)return;document.querySelectorAll(".review-option").forEach(x=>x.classList.remove("chosen"));b.classList.add("chosen")});
+
+const weeklyChallenges = [
+ {week:"WEEK 01",title:"The Health Information Challenge",short:"Evaluate an online claim",intro:"A classmate sees a confident health claim in a short video and wants to share it with the group. Your task is to decide how to check it before passing it along.",task:"Fictional situation: A video says, “This one simple trick works for everyone.” It does not name an author, link evidence, or explain where the information came from.",steps:["Find the original source instead of relying on a repost.","Check whether the author or organization has relevant expertise.","Look for evidence and compare the claim with independent, reputable sources.","Notice absolute promises and pressure to share immediately."],question:"What would you check first, and how would you explain whether this post is ready to share?",feedback:"A strong response identifies the original source, checks expertise and evidence, and avoids sharing a claim until it has been verified. A confident tone or a high view count is not proof."},
+ {week:"WEEK 02",title:"The Everyday Prevention Challenge",short:"Think about shared spaces",intro:"Your class is preparing for a busy school event where many students will use shared materials and spaces. Think about practical, school-approved ways to support hygiene.",task:"Fictional situation: Students are sharing classroom supplies, eating snacks, and moving between activity stations. A student asks what simple steps can support a cleaner shared environment.",steps:["Follow school guidance for handwashing and cleaning.","Avoid sharing personal items such as water bottles or personal hygiene supplies.","Use supplies as directed and ask staff when unsure.","Remember that prevention is a shared responsibility, not a reason to shame anyone."],question:"Name two reasonable steps the class can take and explain why respectful, consistent habits matter.",feedback:"Useful answers focus on school-approved hygiene practices, handwashing at appropriate times, and not sharing personal items. Keep the discussion respectful and avoid blaming individuals."},
+ {week:"WEEK 03",title:"The Sleep and Well-being Challenge",short:"Build a realistic routine",intro:"A fictional student says their schedule feels busy and asks how to think about habits that support rest and well-being. This is a general learning activity, not an assessment of anyone's sleep.",task:"Fictional situation: A student has school, activities, family responsibilities, and screen-based homework. They want to reflect on routines that may support feeling prepared for the day.",steps:["Notice patterns without judging yourself or comparing with classmates.","Consider consistent routines and a calming transition toward bedtime.","Think about how schedules, responsibilities, and environments affect routines.","If ongoing concerns affect daily life, talk with a trusted adult or healthcare professional."],question:"What are two supportive routine ideas, and why should advice leave room for different circumstances?",feedback:"Strong responses suggest practical, flexible routines and recognize that students have different schedules and needs. Avoid presenting one routine as a guaranteed solution for everyone."},
+ {week:"WEEK 04",title:"The Healthcare Conversation Challenge",short:"Ask clear questions",intro:"Understanding healthcare information includes knowing how to ask questions and check that an explanation makes sense.",task:"Fictional situation: During a healthcare visit, a professional uses a term the student does not understand. The student is unsure whether it is okay to ask for clarification.",steps:["Pause and identify the word or instruction that is unclear.","Ask for the explanation in everyday language.","Ask what the next step is and who to contact with follow-up questions.","A trusted adult can help a student prepare questions and understand the process."],question:"Write one respectful question the student could ask and explain how asking supports understanding.",feedback:"A useful question might be, “Could you explain what that means in simpler words?” Asking for clarification is a responsible part of understanding information."},
+ {week:"WEEK 05",title:"The Trusted Support Challenge",short:"Find the right school resource",intro:"Students may not always know which school adult or resource can help with a question. Practice identifying a safe next step.",task:"Fictional situation: A student is unsure which staff member can answer a school-related health or well-being question. They do not need to share private details with classmates to find help.",steps:["Identify a trusted school adult, such as a teacher or counselor, who can help direct the student.","For school health-office questions, ask about the school nurse and the school's process.","Use the school's verified directory and approved procedures.","If there is immediate danger, alert a nearby responsible adult or staff member right away."],question:"What is one appropriate way to find the right school resource while respecting privacy?",feedback:"Strong responses suggest asking a trusted staff member or using the school's verified directory. Avoid posting private concerns in public spaces or trying to manage urgent situations alone."}
+];
+let activeChallenge=0;
+function renderChallenges(){
+ const list=document.getElementById("challengeList");
+ list.innerHTML=weeklyChallenges.map((c,i)=>`<button class="challenge-choice ${i===activeChallenge?"active":""}" data-challenge="${i}"><span class="small-label">${c.week}${(progress.challengeDone||[]).includes(i)?" · COMPLETED":""}</span><br>${c.short}</button>`).join("");
+ const c=weeklyChallenges[activeChallenge];
+ document.getElementById("challengeWeek").textContent=c.week;
+ document.getElementById("challengeTitle").textContent=c.title;
+ document.getElementById("challengeIntro").textContent=c.intro;
+ document.getElementById("challengeTask").textContent=c.task;
+ document.getElementById("challengeSteps").innerHTML=c.steps.map((s,i)=>`<div class="challenge-step"><b>${i+1}</b><span>${s}</span></div>`).join("");
+ document.getElementById("challengeQuestion").textContent=c.question;
+ document.getElementById("challengeAnswer").value="";
+ document.getElementById("challengeFeedback").hidden=true;
+}
+document.getElementById("challengeList").addEventListener("click",e=>{
+ const b=e.target.closest("[data-challenge]");if(!b)return;
+ activeChallenge=Number(b.dataset.challenge);renderChallenges();
+});
+document.getElementById("challengeCheck").addEventListener("click",()=>{
+ const answer=document.getElementById("challengeAnswer").value.trim();
+ if(answer.length<12){toast("Add a little more reasoning before checking.");return}
+ const box=document.getElementById("challengeFeedback");
+ box.textContent=weeklyChallenges[activeChallenge].feedback+" Your written response stays in this page and is not sent to a teacher or stored.";
+ progress.challengeDone=progress.challengeDone||[];if(!progress.challengeDone.includes(activeChallenge))progress.challengeDone.push(activeChallenge);saveProgress();
+ box.hidden=false;
+});
+document.getElementById("challengeReset").addEventListener("click",()=>{
+ document.getElementById("challengeAnswer").value="";
+ document.getElementById("challengeFeedback").hidden=true;
+});
+const teacherLessons={
+ literacy:{title:"Evaluating health information",duration:"30–35 minutes",objectives:["Identify the original author or organization behind a claim.","Describe how expertise, evidence, and publication date help evaluate a source.","Explain why popularity and confident wording do not prove accuracy."],warmup:"Display a fictional health claim and ask: “What would you want to know before trusting this?”",activity:"In pairs, students use the source-check sequence: identify the source, look for evidence, check the date, and compare with independent reputable sources. Ask students to explain which information is missing.",discussion:["What is the difference between a personal story and evidence that supports a general claim?","Why might a post with many views still be unreliable?","What would make you pause before sharing a claim?"],exit:"Name two things you would check before sharing an online health claim."},
+ decisions:{title:"Making informed decisions",duration:"30 minutes",objectives:["Describe a simple pause-check-ask decision process.","Recognize when online advice is not enough for a personal health question.","Identify a trusted adult or qualified professional as a source of support."],warmup:"Ask students to think about a time they had to decide whether information was trustworthy. They should discuss a general example, not disclose private health information.",activity:"Present a fictional scenario. Students identify what is known, what is uncertain, what source should be checked, and which trusted person or professional could help.",discussion:["Why is pausing useful when a claim sounds urgent?","Why might advice for one person not apply to everyone?","When is asking a trusted adult a responsible next step?"],exit:"Write the steps you would take before acting on an unfamiliar health claim."},
+ hygiene:{title:"Everyday hygiene and prevention",duration:"25–30 minutes",objectives:["Describe everyday practices that support hygiene in shared spaces.","Explain why school-approved guidance matters.","Discuss prevention without blaming or shaming individuals."],warmup:"Ask: “What are some ways a classroom community can help keep shared spaces clean and respectful?”",activity:"Students sort fictional classroom actions into helpful shared-space habits and actions that need a safer alternative. Emphasize handwashing, not sharing personal items, and following school guidance.",discussion:["Why is prevention a shared responsibility?","How can reminders be respectful rather than embarrassing?","Who can clarify a school's hygiene procedures?"],exit:"Describe one practical hygiene habit and why it can help in a shared space."},
+ sleep:{title:"Sleep and well-being",duration:"30 minutes",objectives:["Explain that routines and circumstances can affect rest.","Identify flexible habits that may support a consistent routine.","Recognize when a trusted adult or professional may be helpful."],warmup:"Invite students to brainstorm general factors that can affect daily routines. Do not ask students to disclose personal sleep information.",activity:"Review a fictional student's busy schedule. In small groups, suggest realistic routine adjustments while considering school, family, and activity commitments.",discussion:["Why should well-being advice account for different circumstances?","How can a routine be supportive without being rigid?","Who could a student talk to if ongoing concerns affect daily life?"],exit:"Name one flexible routine idea and explain why individual circumstances matter."},
+ support:{title:"Finding trusted support",duration:"25–30 minutes",objectives:["Identify examples of trusted school adults and support roles.","Explain how a student can find the appropriate school resource.","Recognize that urgent safety concerns should be shared with a responsible adult immediately."],warmup:"Ask: “If a student does not know which staff member can help, what is a reasonable first step?”",activity:"Use a school-approved directory or a fictional sample directory. Students match general questions to the type of school resource that may help, without sharing personal stories.",discussion:["Why is it useful to know school support options before needing them?","How can students ask for help while respecting privacy?","What should a student do if there is immediate danger?"],exit:"Identify one way to find the correct school resource."}
+};
+function renderTeacherLesson(){
+ const key=document.getElementById("teacherTopic").value,t=teacherLessons[key];
+ const minutes=Number(document.getElementById("lessonDuration").value||30),format=document.getElementById("lessonFormat").value;
+ const formatNote=format==="pairs"?"Teaching format: partner or small-group collaboration.":format==="independent"?"Teaching format: individual reading and written reflection.":"Teaching format: whole-class instruction and guided discussion.";
+ const timing=[Math.max(3,Math.round(minutes*.15)),Math.max(5,Math.round(minutes*.45)),Math.max(4,Math.round(minutes*.25))];timing.push(Math.max(2,minutes-timing.reduce((a,b)=>a+b,0)));
+ document.getElementById("teacherLesson").innerHTML=`<span class="small-label">${minutes} MINUTES · SUGGESTED PLAN</span><p class="format-note">${formatNote}</p><h3>${t.title}</h3><h4>Learning objectives</h4><ul>${t.objectives.map(x=>`<li>${x}</li>`).join("")}</ul><h4>1. Warm-up · ${timing[0]} min</h4><p>${t.warmup}</p><h4>2. Guided activity · ${timing[1]} min</h4><p>${t.activity}</p><h4>3. Discussion · ${timing[2]} min</h4><ul>${t.discussion.map(x=>`<li>${x}</li>`).join("")}</ul><h4>4. Exit ticket · ${timing[3]} min</h4><p>${t.exit}</p>`;
+}
+document.getElementById("teacherTopic").addEventListener("change",renderTeacherLesson);
+document.getElementById("lessonDuration").addEventListener("change",renderTeacherLesson);
+document.getElementById("lessonFormat").addEventListener("change",renderTeacherLesson);
+document.getElementById("printTeacher").addEventListener("click",()=>window.print());
+document.getElementById("printExit").addEventListener("click",()=>window.print());
+const discussionPrompts=[
+ "What makes a health information source trustworthy?",
+ "How can you check whether an online claim is supported by evidence?",
+ "Why might advice that worked for one person not apply to everyone?",
+ "What could you say if you do not understand a healthcare term?",
+ "How can a student find the right school resource while respecting privacy?"
+];
+let promptIndex=0;
+document.getElementById("nextPrompt").addEventListener("click",()=>{
+ promptIndex=(promptIndex+1)%discussionPrompts.length;
+ document.getElementById("projectPrompt").textContent=discussionPrompts[promptIndex];
+});
+document.getElementById("projectView").addEventListener("click",()=>{
+ document.body.classList.toggle("presentation-mode");
+ document.getElementById("projectView").textContent=document.body.classList.contains("presentation-mode")?"Exit presentation view":"Focus presentation view";
+});
+
+const dailyPrompts=[
+ ["What makes health information trustworthy?","A useful place to start is checking who created the information and what evidence supports it."],
+ ["Why do different people need different support?","People's experiences and circumstances vary. Reliable guidance should leave room for individual differences."],
+ ["What can you do when a claim sounds urgent?","Pause, check the original source, and look for evidence before sharing or acting on it."],
+ ["Who can help you understand a health question?","A trusted adult, school nurse, or qualified healthcare professional can help you find an appropriate next step."]
+];
+const dayNumber=Math.floor(Date.now()/86400000)%dailyPrompts.length;
+document.getElementById("dailyTitle").textContent=dailyPrompts[dayNumber][0];document.getElementById("dailyDescription").textContent=dailyPrompts[dayNumber][1];
+function toast(message){const t=document.getElementById("toast");t.textContent=message;t.classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove("show"),2200)}
+function saveTakeaway(title,value){progress.savedTakeaways=progress.savedTakeaways||[];progress.savedTakeaways.unshift({title,value,date:new Date().toLocaleDateString()});progress.savedTakeaways=progress.savedTakeaways.slice(0,12);saveProgress()}
+function renderPersonalDashboard(){
+ const total=totalLessons(),done=(progress.completed||[]).length;
+ const next=paths.flatMap(p=>p.lessons.map(l=>({path:p,lesson:l}))).find(x=>!(progress.completed||[]).includes(x.lesson.id));
+ const title=document.getElementById("nextStepTitle"),copy=document.getElementById("nextStepText"),btn=document.getElementById("nextStepButton");
+ if(next){title.textContent=done?`Continue with ${next.lesson.title}`:"Start with Health Foundations";copy.textContent=`${next.path.title} · ${done} of ${total} lessons completed. Continue at your own pace.`;btn.textContent="Continue learning →";btn.onclick=()=>openPath(next.path.id,next.lesson.id)}else{title.textContent="You have explored every lesson";copy.textContent="Your learning paths are complete. Revisit a topic or strengthen your skills with a review.";btn.textContent="Practice what you know";btn.onclick=()=>showPage("review")}
+ const list=document.getElementById("takeawayList"),items=progress.savedTakeaways||[];
+ list.innerHTML=items.length?items.slice(0,3).map((x,i)=>`<div class="takeaway-item"><strong>${escapeHtml(x.title)}</strong><p>${escapeHtml(x.value)}</p><small>${escapeHtml(x.date||"")}</small><button class="text-action" data-remove-takeaway="${i}" aria-label="Remove takeaway">Remove</button></div>`).join(""):'<p class="muted-copy">Your saved takeaways will appear here.</p>';
+}
+function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+document.getElementById("takeawayList").addEventListener("click",e=>{const b=e.target.closest("[data-remove-takeaway]");if(!b)return;progress.savedTakeaways.splice(Number(b.dataset.removeTakeaway),1);saveProgress()});
+const sortExamples=[
+ {text:"A public health organization explains who reviewed its article and links to supporting evidence.",answer:"reliable",why:"It identifies a responsible source and lets readers inspect supporting evidence."},
+ {text:"An anonymous post promises the same result for everyone but gives no source or evidence.",answer:"questionable",why:"Anonymous authorship, sweeping guarantees, and missing evidence are reasons to pause."},
+ {text:"A school handout links to a recognized health organization and includes a review date.",answer:"reliable",why:"A clear source and review date help readers check the information and its currency."},
+ {text:"A viral video says not to ask questions and tells viewers to share it immediately.",answer:"questionable",why:"Pressure to share and discouraging questions are warning signs, not proof."},
+ {text:"A personal story describes one person's experience but does not claim it applies to everyone.",answer:"questionable",why:"A personal story may be meaningful, but by itself it does not establish general evidence. Treat it as experience, not proof."}
+];
+let sortIndex=0;
+function renderSort(){document.getElementById("sortPrompt").textContent=sortExamples[sortIndex].text;document.getElementById("sortFeedback").hidden=true}
+document.querySelectorAll("[data-sort]").forEach(b=>b.addEventListener("click",()=>{const item=sortExamples[sortIndex],correct=b.dataset.sort===item.answer;const box=document.getElementById("sortFeedback");box.textContent=(correct?"Good reasoning. ":"Take another look. ")+item.why;box.hidden=false}));
+document.getElementById("nextSort").addEventListener("click",()=>{sortIndex=(sortIndex+1)%sortExamples.length;renderSort()});
+const matchPairs={source:"source",evidence:"evidence",context:"context",uncertainty:"uncertainty"};
+document.getElementById("checkMatch").addEventListener("click",()=>{const good=matchPairs[document.getElementById("matchTerm").value]===document.getElementById("matchExample").value;const box=document.getElementById("matchFeedback");box.textContent=good?"That's a match. You connected the term with its meaning.":"Not quite. Read the definition carefully and try again.";box.hidden=false});
+document.getElementById("saveStudioReflection").addEventListener("click",()=>{const value=document.getElementById("studioReflection").value.trim();if(value.length<8){toast("Write a little more before saving.");return}saveTakeaway("Practice studio reflection",value);document.getElementById("studioSaveStatus").textContent="Saved on this device.";document.getElementById("studioReflection").value=""});
+
+
+// School customization is intentionally offline until a reviewed school setup workflow is ready.
+renderPathCards();updateDashboard();renderScenario();renderChallenges();renderTeacherLesson();renderSort();
+
+
+// Expanded dictionary, curated question library, global health notes, portfolio, achievements and teacher lesson builder.
+const kbTerms = [
+ ["Immunity","Body defense","The body's ability to recognize and respond to certain germs and other substances that may cause illness."],
+ ["Dehydration","Body balance","A condition that happens when the body does not have enough water to function normally."],
+ ["Prevention","Public health","Actions that help lower the chance of illness or injury, such as handwashing and following safety guidance."],
+ ["Vaccination","Prevention","A way to help the immune system recognize a particular germ and prepare to respond."],
+ ["Healthcare provider","Healthcare","A trained professional who helps people with health questions, care, and services."],
+ ["Chronic condition","Health concepts","A health condition that continues over a long period and may need ongoing support or care."],
+ ["Evidence","Health information","Information that supports or challenges a claim. Strong evidence is gathered and evaluated carefully."],
+ ["Reliable source","Digital literacy","A source that is transparent about who created its information, why it was created, and what evidence supports it."],
+ ["Public health","Community health","Work that protects and improves health across groups and communities, not only one person at a time."],
+ ["Well-being","Everyday health","A broad idea that includes physical, emotional, and social aspects of life."],
+ ["Hygiene","Prevention","Everyday practices that help keep people and shared spaces clean and reduce the spread of some germs."],
+ ["Health literacy","Learning skill","The ability to find, understand, and use health information and services to make informed decisions."]
+];
+const kbQuestions = [
+ ["Why do we need vaccines?","Vaccines help the immune system recognize particular germs and prepare to respond. Community vaccination can also help reduce the spread of some infectious diseases. A healthcare professional or trusted adult can answer questions about a person's own care."],
+ ["What does a school nurse do?","A school nurse supports student health at school, follows school procedures, and can help students understand where to go with a health concern. The exact services vary by school."],
+ ["Why is handwashing important?","Handwashing with soap and water at appropriate times helps remove germs from hands and can reduce the spread of some infections. Follow your school's and public health authorities' guidance."],
+ ["How does the immune system work?","The immune system is a network of cells, tissues, and organs that helps the body recognize and respond to germs and other substances. It has several parts that work together."],
+ ["What happens during a routine doctor's appointment?","A routine visit may include talking about general health, asking questions, reviewing relevant history, and completing checks that are appropriate for the person's age and situation. The healthcare team can explain each step."],
+ ["How can I tell if a health website is trustworthy?","Look for the organization or author, publication or review date, evidence and references, and whether other reputable sources agree. Be cautious about miracle claims, pressure to share, or promises that something works for everyone."]
+];
+function renderDictionary(filter=""){
+ const list=kbTerms.filter(x=>x.join(" ").toLowerCase().includes(filter.toLowerCase()));
+ document.getElementById("dictionaryResults").innerHTML=list.length?list.map(x=>`<article class="dictionary-entry"><span class="term-type">${x[1]}</span><h3>${x[0]}</h3><p>${x[2]}</p></article>`).join(""):'<div class="panel"><p>No matching term yet. Try a broader search.</p></div>';
+}
+function renderQuestionLibrary(){
+ document.getElementById("questionLibrary").innerHTML=kbQuestions.map((q,i)=>`<button class="question-btn" data-kb-question="${i}">${q[0]} →</button>`).join("");
+}
+document.getElementById("dictionarySearch").addEventListener("input",e=>renderDictionary(e.target.value));
+document.getElementById("questionLibrary").addEventListener("click",e=>{
+ const b=e.target.closest("[data-kb-question]");if(!b)return;
+ const q=kbQuestions[Number(b.dataset.kbQuestion)],box=document.getElementById("questionAnswer");
+ box.innerHTML=`<h3>${q[0]}</h3><p>${q[1]}</p>`;box.hidden=false;
+});
+document.getElementById("dictionaryTags").innerHTML=["Immunity","Prevention","Evidence","Public health"].map(t=>`<button class="dictionary-tag" data-dict-tag="${t}">${t}</button>`).join("");
+document.getElementById("dictionaryTags").addEventListener("click",e=>{const b=e.target.closest("[data-dict-tag]");if(b){document.getElementById("dictionarySearch").value=b.dataset.dictTag;renderDictionary(b.dataset.dictTag)}});
+renderDictionary();renderQuestionLibrary();
+
+const worldNotes=[
+ ["01","Clean water and sanitation","Safe drinking water and sanitation help prevent disease and support schools, homes, and communities.","How can a community protect water sources and make clean water easier to access?"],
+ ["02","Vaccination programs","Public vaccination programs help communities prevent certain infectious diseases. Access, communication, and trust all matter.","What helps people find clear, reliable information about vaccination?"],
+ ["03","Healthy places to learn and play","Safe buildings, clean air, green spaces, and accessible recreation can support health and well-being.","What could a school improve to make its environment healthier for everyone?"],
+ ["04","Preventing infectious disease","Public health teams monitor health trends, share guidance, and coordinate prevention efforts.","Why is accurate, timely information important during a public health concern?"],
+ ["05","Access to healthcare","Distance, cost, transportation, language, and availability can affect whether people can access services.","What community services can help people navigate healthcare?"],
+ ["06","Health information across languages","Clear, accessible communication helps people understand health guidance and make informed decisions.","How can health information be made easier for more people to understand?"]
+];
+document.getElementById("worldTopics").innerHTML=worldNotes.map(x=>`<article class="world-card"><span class="world-number">${x[0]}</span><h3>${x[1]}</h3><p>${x[2]}</p><strong>THINK ABOUT: ${x[3]}</strong></article>`).join("");
+document.getElementById("saveWorldReflection").addEventListener("click",()=>{
+ const v=document.getElementById("worldReflection").value.trim();if(v.length<8){toast("Add a little more to your reflection before saving.");return}
+ saveTakeaway("Global health reflection",v);toast("Reflection saved to your portfolio.");
+});
+
+const lessonTemplates={
+ "health-info":{title:"Evaluating health information",objective:"Students will identify features of a reliable source and explain why a claim needs evidence.",vocab:["source","evidence","author","publication date"],opening:"Display a fictional online health claim. Ask: What would you want to know before trusting it?",activity:"In pairs, review a sample claim and sort details into helpful evidence, missing information, and warning signs.",discussion:["Who created the information?","What evidence is provided?","Can another reputable source confirm the claim?"],check:"Write one question you should ask before sharing an unfamiliar health claim."},
+ "prevention":{title:"Everyday prevention and hygiene",objective:"Students will explain how everyday prevention practices can reduce the spread of some germs.",vocab:["prevention","hygiene","germ","community"],opening:"Ask students to name everyday actions that help keep shared spaces healthier.",activity:"Groups map a school day and identify moments when handwashing or following school hygiene guidance is useful.",discussion:["Why do shared spaces need shared habits?","How can prevention guidance change with the situation?"],check:"Name one prevention practice and explain why it can help."},
+ "sleep":{title:"Sleep and well-being",objective:"Students will describe how sleep supports learning, attention, and general well-being.",vocab:["sleep","routine","well-being","attention"],opening:"Ask: What parts of a normal day can feel different after a restful night?",activity:"Students examine a fictional daily schedule and identify routines that may support a consistent sleep opportunity.",discussion:["Why can routines be helpful?","Why might sleep needs and circumstances differ?"],check:"Write one question you could ask a trusted adult about healthy sleep routines."},
+ "healthcare":{title:"Navigating healthcare conversations",objective:"Students will practice asking clear questions and checking their understanding during a healthcare conversation.",vocab:["healthcare provider","appointment","question","communication"],opening:"Discuss why it is okay to ask a healthcare professional to explain an unfamiliar word.",activity:"In pairs, role-play a fictional appointment conversation focused on asking questions and repeating back what was understood.",discussion:["What makes a question clear?","How can someone ask for an explanation in a respectful way?"],check:"Write one question a person could ask when they do not understand an explanation."},
+ "community":{title:"Community and global health",objective:"Students will identify community factors that influence health and suggest a practical community-level improvement.",vocab:["public health","sanitation","access","community"],opening:"Ask students to identify features of a neighborhood or school that can support health.",activity:"Small groups choose one community health topic and identify individual, school, and community-level actions.",discussion:["Which challenges require more than individual action?","How can communities share reliable information?"],check:"Describe one community action that could support health."},
+ "decision":{title:"Responsible health decisions",objective:"Students will use a pause, check, and ask-for-help process in a fictional health-related situation.",vocab:["decision","reliable source","trusted adult","evidence"],opening:"Present a fictional situation where a student encounters surprising health advice online.",activity:"Students work through a branching scenario and explain the reasoning behind their next step.",discussion:["What information is missing?","When should a trusted adult or qualified professional be involved?"],check:"Name one way to make a more informed decision."}
+};
+function buildLessonPlan(){
+ const t=lessonTemplates[document.getElementById("builderTopic").value],duration=Number(document.getElementById("builderDuration").value),grade=document.getElementById("builderGrade").value,focus=document.getElementById("builderFocus").value;
+ const minutes=duration===20?[3,4,8,5]:duration===30?[5,5,12,8]:duration===45?[7,8,20,10]:[10,10,28,12];
+ const focusText={discussion:"Prioritize partner talk and whole-class discussion.",practice:"Give students additional time to work through the activity and explain choices.",reflection:"Allow more time for written responses and individual reflection."}[focus];
+ const out=document.getElementById("lessonBuilderOutput");
+ out.innerHTML=`<span class="small-label">READY-TO-REVIEW CLASSROOM PLAN · ${grade.toUpperCase()}</span><h2>${t.title}</h2><p><strong>Learning objective:</strong> ${t.objective}</p><p><strong>Suggested vocabulary:</strong> ${t.vocab.join(" · ")}</p><div class="lesson-timing"><div><strong>${minutes[0]} min</strong><span>INTRODUCE</span></div><div><strong>${minutes[1]} min</strong><span>DISCUSS</span></div><div><strong>${minutes[2]} min</strong><span>ACTIVITY</span></div><div><strong>${minutes[3]} min</strong><span>REFLECT</span></div></div><h3>1. Opening prompt</h3><p>${t.opening}</p><h3>2. Guided activity</h3><p>${t.activity}</p><p><em>${focusText}</em></p><h3>3. Discussion prompts</h3><ul>${t.discussion.map(x=>`<li>${x}</li>`).join("")}</ul><h3>4. Exit ticket</h3><p>${t.check}</p><h3>Materials</h3><ul><li>Board or display for the opening prompt</li><li>Student notebook or printed response sheet</li><li>Know Better learning activity related to this topic</li></ul><div class="lesson-actions"><button class="btn btn-primary" id="printLessonPlan">Print lesson plan</button><button class="btn btn-secondary" id="copyLessonPlan">Copy lesson text</button></div><p class="small-print">Teacher review required: adapt examples, vocabulary, accessibility, and procedures to your curriculum and school policies. This plan is an educational template, not clinical guidance.</p>`;
+}
+document.getElementById("lessonBuilderForm").addEventListener("submit",e=>{e.preventDefault();buildLessonPlan()});
+document.getElementById("lessonBuilderOutput").addEventListener("click",e=>{
+ if(e.target.id==="printLessonPlan")window.print();
+ if(e.target.id==="copyLessonPlan"){
+  const text=document.getElementById("lessonBuilderOutput").innerText;
+  if(navigator.clipboard?.writeText)navigator.clipboard.writeText(text).then(()=>toast("Lesson text copied."));
+  else toast("Copy is not available in this browser. Use Print instead.");
+ }
+});
+buildLessonPlan();
+
+function renderPortfolio(){
+ const total=totalLessons(),done=progress.completed.length,scenarioCount=progress.scenarios||0,reviewCount=progress.reviews||0,challengeCount=(progress.challengeDone||[]).length;
+ document.getElementById("portfolioStats").innerHTML=[
+  [done,"Lessons completed"],[scenarioCount,"Scenarios explored"],[reviewCount,"Review rounds"],[challengeCount,"Challenges completed"]
+ ].map(x=>`<div class="portfolio-stat"><strong>${x[0]}</strong><span>${x[1]}</span></div>`).join("");
+ const badges=[
+  ["A","First steps","Complete your first lesson",done>=1],
+  ["S","Source detective","Complete five health information challenges or reviews",challengeCount+reviewCount>=5],
+  ["P","Prevention learner","Complete a lesson in a prevention-related path",progress.completed.some(id=>/prevent|hygiene|body|habit/i.test(id))],
+  ["C","Critical thinker","Explore five decision-making scenarios",scenarioCount>=5],
+  ["E","Knowledge explorer","Complete five lessons",done>=5],
+  ["R","Reflective learner","Save a learning takeaway",((progress.savedTakeaways||[]).length>0)]
+ ];
+ document.getElementById("achievementGrid").innerHTML=badges.map(b=>`<div class="achievement ${b[3]?"":"locked"}"><span class="achievement-mark">${b[0]}</span><strong>${b[1]} ${b[3]?"✓":"·"}</strong><p>${b[2]}</p></div>`).join("");
+ document.getElementById("topicProgress").innerHTML=paths.map(p=>{const count=p.lessons.filter(l=>progress.completed.includes(l.id)).length;return `<div class="topic-row"><div class="topic-row-top"><span>${p.title}</span><strong>${count}/${p.lessons.length}</strong></div><div class="progress-track"><div class="progress-fill" style="width:${count/p.lessons.length*100}%"></div></div></div>`}).join("");
+ const takes=progress.savedTakeaways||[];
+ document.getElementById("portfolioTakeaways").innerHTML=takes.length?takes.slice().reverse().map(x=>`<div class="takeaway-item"><strong>${escapePortfolio(x.title)}</strong><p>${escapePortfolio(x.value)}</p><small>${new Date(x.date).toLocaleDateString()}</small></div>`).join(""):'<p class="muted-copy">No saved takeaways yet. Save a reflection from a lesson or activity to see it here.</p>';
+}
+function escapePortfolio(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+document.getElementById("exportPortfolio").addEventListener("click",()=>{
+ const payload={product:"Know Better",exportedAt:new Date().toISOString(),note:"Personal learning record stored locally in this browser.",progress};
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download="know-better-learning-portfolio.json";a.click();URL.revokeObjectURL(url);
+});
+document.getElementById("printPortfolio").addEventListener("click",()=>window.print());
+const oldSaveProgress=saveProgress;
+saveProgress=function(){oldSaveProgress();renderPortfolio()};
+const oldSaveTakeaway=saveTakeaway;
+saveTakeaway=function(title,text){oldSaveTakeaway(title,text);renderPortfolio()};
+document.getElementById("fontToggle").addEventListener("click",()=>document.body.classList.toggle("large-type"));
+document.getElementById("contrastToggle").addEventListener("click",()=>document.body.classList.toggle("high-contrast"));
+document.getElementById("motionToggle").addEventListener("click",()=>document.body.classList.toggle("reduce-motion"));
+document.getElementById("readAloudToggle").addEventListener("click",()=>{
+ if(!("speechSynthesis" in window)){toast("Read aloud is not supported in this browser.");return}
+ if(window.speechSynthesis.speaking){window.speechSynthesis.cancel();document.getElementById("readAloudToggle").textContent="Read aloud";return}
+ const active=document.querySelector(".page.active");if(!active)return;
+ const text=[...active.querySelectorAll("h1,h2,h3,p,li,button")].map(el=>el.innerText).filter(Boolean).join(". ").slice(0,12000);
+ const utterance=new SpeechSynthesisUtterance(text);utterance.rate=0.92;utterance.onend=()=>document.getElementById("readAloudToggle").textContent="Read aloud";
+ utterance.onerror=()=>document.getElementById("readAloudToggle").textContent="Read aloud";
+ document.getElementById("readAloudToggle").textContent="Stop reading";window.speechSynthesis.speak(utterance);
+});
+renderPortfolio();
+
+</script>
+</body>
+</html>
