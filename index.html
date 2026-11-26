@@ -386,6 +386,49 @@ body.reduce-motion *,body.reduce-motion *:before,body.reduce-motion *:after{anim
 @media(max-width:520px){.feature-shortcuts,.dictionary-grid,.world-grid,.coming-grid,.portfolio-stats{grid-template-columns:1fr 1fr}.question-library{grid-template-columns:1fr}.lesson-timing{grid-template-columns:repeat(2,1fr)}.achievement-grid{grid-template-columns:1fr 1fr}}
 @media print{.portfolio-actions,.topbar,footer{display:none!important}#portfolio{display:block!important}.page{display:none!important}#portfolio .page-head{display:block!important}}
 
+
+/* Simplified header and clearly explained display controls */
+.topbar{height:72px;padding:0 max(5vw,22px);display:flex;gap:18px}
+.brand{flex:0 0 auto}
+.header-actions{display:flex;align-items:center;gap:10px;margin-left:auto}
+.menu-toggle,.preferences-toggle{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #d9d5c8;background:#fbf9f2;color:#40543b;border-radius:4px;padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:.15px}
+.menu-toggle:hover,.preferences-toggle:hover{background:#efeee3;border-color:#aeb89f}
+.menu-toggle span,.preferences-toggle span{font-size:13px;color:#7c896e}
+.nav{display:none;position:absolute;top:calc(100% + 1px);right:max(5vw,22px);left:auto;width:min(720px,90vw);max-width:none;background:#fbf9f2;border:1px solid #ded8c8;border-top:0;padding:18px;box-shadow:0 18px 35px rgba(48,67,51,.13);display:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;align-items:stretch}
+.nav.open{display:grid}
+.nav-btn{border-radius:3px;text-align:left;padding:12px 13px;font-size:11px;line-height:1.35;color:#596b55}
+.nav-btn.active{box-shadow:inset 2px 0 #607b59}
+.preferences-panel{position:absolute;top:calc(100% + 1px);right:max(5vw,22px);width:min(390px,calc(100vw - 28px));background:#fbf9f2;border:1px solid #ded8c8;box-shadow:0 18px 35px rgba(48,67,51,.14);padding:21px;z-index:40}
+.preferences-panel[hidden]{display:none}
+.preferences-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.preferences-heading h2{font:500 25px Georgia,serif;color:#304333;margin:3px 0 0}
+.preferences-close{border:1px solid #ded8c8;background:transparent;color:#52634d;width:30px;height:30px;font-size:19px;line-height:1}
+.preferences-intro,.preferences-note{font-size:11px;line-height:1.65;color:#75806f;margin:12px 0}
+.preference-option{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 0;border-top:1px solid #e4dfd1}
+.preference-option>div{display:flex;flex-direction:column;gap:3px}
+.preference-option strong{font-size:12px;color:#354a36}
+.preference-option span{font-size:10px;line-height:1.5;color:#77806f}
+.preference-switch{flex:0 0 auto;min-width:62px;border:1px solid #c9cbb9;background:#f0eee4;color:#52634d;padding:7px 10px;font-size:10px;font-weight:750;border-radius:3px}
+.preference-switch[aria-pressed="true"]{background:#405c3c;border-color:#405c3c;color:white}
+.preference-switch:focus-visible,.preferences-close:focus-visible{outline:3px solid #8ba77a;outline-offset:3px}
+.preferences-note{font-size:9px;margin-bottom:0}
+@media(max-width:700px){
+ .topbar{height:68px;padding:0 4%;gap:8px}
+ .brand{font-size:18px;gap:8px}
+ .brand-mark{width:31px;height:31px}
+ .brand-caption{font-size:6px}
+ .header-actions{gap:6px}
+ .menu-toggle,.preferences-toggle{padding:9px 10px;font-size:10px}
+ .nav{left:4%;right:4%;width:auto;grid-template-columns:repeat(2,minmax(0,1fr));padding:12px}
+ .nav-btn{font-size:10px;padding:11px 9px}
+ .preferences-panel{right:4%;width:min(390px,92vw)}
+}
+@media(max-width:390px){
+ .brand{font-size:16px}
+ .brand-mark{width:28px;height:28px}
+ .menu-toggle,.preferences-toggle{padding:8px;font-size:9px;gap:5px}
+}
+
 </style>
 </head>
 <body>
@@ -394,14 +437,13 @@ body.reduce-motion *,body.reduce-motion *:before,body.reduce-motion *:after{anim
     <span class="brand-mark"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7.5c3.2-1.2 6.2-.8 9 1.2v13c-2.8-2-5.8-2.4-9-1.2z"/><path d="M23 7.5c-3.2-1.2-6.2-.8-9 1.2v13c2.8-2 5.8-2.4 9-1.2z"/><path d="M14 8.7v13"/><path d="M8 11c1.5-.3 2.8 0 4 1"/><path d="M20 11c-1.5-.3-2.8 0-4 1"/></svg></span>
     <span>Know <span>Better</span><small class="brand-caption"> A FIELD GUIDE TO EVERYDAY HEALTH</small></span>
   </button>
-  <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">Menu</button>
-  <div class="accessibility-tools" aria-label="Display preferences">
-    <button type="button" id="fontToggle" aria-label="Toggle larger text">A+</button>
-    <button type="button" id="contrastToggle" aria-label="Toggle high contrast">Contrast</button>
-    <button type="button" id="motionToggle" aria-label="Reduce motion">Motion</button>
-    <button type="button" id="readAloudToggle" aria-label="Read the current page aloud">Read aloud</button>
+  <div class="header-actions">
+    <button class="menu-toggle" id="menuToggle" aria-label="Open site navigation" aria-expanded="false">Explore <span aria-hidden="true">⌄</span></button>
+    <button class="preferences-toggle" id="preferencesToggle" type="button" aria-expanded="false" aria-controls="preferencesPanel">
+      <span aria-hidden="true">Aa</span> Display &amp; reading <span aria-hidden="true">⌄</span>
+    </button>
   </div>
-  <nav class="nav" id="nav">
+  <nav class="nav" id="nav" aria-label="Main navigation">
     <button class="nav-btn active" data-page="home">Overview</button>
     <button class="nav-btn" data-page="paths">Learning paths</button>
     <button class="nav-btn" data-page="scenarios">Scenario lab</button>
@@ -417,6 +459,30 @@ body.reduce-motion *,body.reduce-motion *:before,body.reduce-motion *:after{anim
     <button class="nav-btn" data-page="schoolsetup">School setup</button>
     <button class="nav-btn" data-page="resources">School support</button>
   </nav>
+  <section class="preferences-panel" id="preferencesPanel" aria-label="Display and reading settings" hidden>
+    <div class="preferences-heading">
+      <div><span class="small-label">YOUR VIEW</span><h2>Display &amp; reading</h2></div>
+      <button type="button" class="preferences-close" id="preferencesClose" aria-label="Close display settings">×</button>
+    </div>
+    <p class="preferences-intro">These options change how the website looks or reads on this device. Turn them on or off whenever you like.</p>
+    <div class="preference-option">
+      <div><strong>Larger text</strong><span>Increase the size of text across the page.</span></div>
+      <button type="button" class="preference-switch" id="fontToggle" aria-pressed="false">Off</button>
+    </div>
+    <div class="preference-option">
+      <div><strong>High contrast</strong><span>Make text and page elements easier to distinguish.</span></div>
+      <button type="button" class="preference-switch" id="contrastToggle" aria-pressed="false">Off</button>
+    </div>
+    <div class="preference-option">
+      <div><strong>Reduce motion</strong><span>Limit animated transitions and movement.</span></div>
+      <button type="button" class="preference-switch" id="motionToggle" aria-pressed="false">Off</button>
+    </div>
+    <div class="preference-option">
+      <div><strong>Read this page aloud</strong><span>Use your device's voice to read the current page.</span></div>
+      <button type="button" class="preference-switch read-switch" id="readAloudToggle" aria-pressed="false">Start</button>
+    </div>
+    <p class="preferences-note">Read-aloud availability depends on your browser and device. No audio is recorded or saved.</p>
+  </section>
 </header>
 
 <main>
@@ -885,7 +951,7 @@ function showPage(id){
  const target=document.getElementById(id);if(!target)return;
  document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
  document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",b.dataset.page===id || (id==="lesson"&&b.dataset.page==="paths")));
- document.getElementById("nav").classList.remove("open");document.getElementById("menuToggle").setAttribute("aria-expanded","false");
+ document.getElementById("nav").classList.remove("open");document.getElementById("menuToggle").setAttribute("aria-expanded","false");if(typeof closePreferences==="function")closePreferences();
  window.scrollTo({top:0,behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"});
 }
 document.addEventListener("click",e=>{
@@ -893,7 +959,7 @@ document.addEventListener("click",e=>{
  const pathButton=e.target.closest("[data-path]");if(pathButton){openPath(pathButton.dataset.path);return}
  const lessonButton=e.target.closest("[data-lesson]");if(lessonButton&&currentPath){currentLesson=currentPath.lessons.find(l=>l.id===lessonButton.dataset.lesson);renderLesson()}
 });
-document.getElementById("menuToggle").addEventListener("click",()=>{const nav=document.getElementById("nav"),open=nav.classList.toggle("open");document.getElementById("menuToggle").setAttribute("aria-expanded",String(open))});
+document.getElementById("menuToggle").addEventListener("click",()=>{const nav=document.getElementById("nav"),open=nav.classList.toggle("open");document.getElementById("menuToggle").setAttribute("aria-expanded",String(open));if(open)closePreferences()});
 document.getElementById("lessonContent").addEventListener("click",e=>{
  if(e.target.id==="saveLessonTakeaway"){const value=document.getElementById("lessonReflection").value.trim();if(value.length<8){toast("Write a little more before saving.");return}saveTakeaway(currentLesson.title,value);toast("Takeaway saved on this device.")}
  if(e.target.id==="completeLesson"){if(!progress.completed.includes(currentLesson.id)){progress.completed.push(currentLesson.id);saveProgress();toast("Lesson progress saved.");}renderLesson()}
@@ -1176,17 +1242,38 @@ const oldSaveProgress=saveProgress;
 saveProgress=function(){oldSaveProgress();renderPortfolio()};
 const oldSaveTakeaway=saveTakeaway;
 saveTakeaway=function(title,text){oldSaveTakeaway(title,text);renderPortfolio()};
-document.getElementById("fontToggle").addEventListener("click",()=>document.body.classList.toggle("large-type"));
-document.getElementById("contrastToggle").addEventListener("click",()=>document.body.classList.toggle("high-contrast"));
-document.getElementById("motionToggle").addEventListener("click",()=>document.body.classList.toggle("reduce-motion"));
+function setPreference(buttonId,className,onLabel="On",offLabel="Off"){
+ const button=document.getElementById(buttonId);
+ button.addEventListener("click",()=>{
+  const enabled=document.body.classList.toggle(className);
+  button.setAttribute("aria-pressed",String(enabled));
+  button.textContent=enabled?onLabel:offLabel;
+ });
+}
+setPreference("fontToggle","large-type");
+setPreference("contrastToggle","high-contrast");
+setPreference("motionToggle","reduce-motion");
+const preferencesPanel=document.getElementById("preferencesPanel");
+const preferencesToggle=document.getElementById("preferencesToggle");
+function closePreferences(){preferencesPanel.hidden=true;preferencesToggle.setAttribute("aria-expanded","false")}
+preferencesToggle.addEventListener("click",()=>{
+ const opening=preferencesPanel.hidden;
+ preferencesPanel.hidden=!opening;
+ preferencesToggle.setAttribute("aria-expanded",String(opening));
+ if(opening){document.getElementById("nav").classList.remove("open");document.getElementById("menuToggle").setAttribute("aria-expanded","false")}
+});
+document.getElementById("preferencesClose").addEventListener("click",closePreferences);
+document.addEventListener("click",e=>{
+ if(!preferencesPanel.hidden&&!e.target.closest("#preferencesPanel")&&!e.target.closest("#preferencesToggle"))closePreferences();
+});
 document.getElementById("readAloudToggle").addEventListener("click",()=>{
  if(!("speechSynthesis" in window)){toast("Read aloud is not supported in this browser.");return}
- if(window.speechSynthesis.speaking){window.speechSynthesis.cancel();document.getElementById("readAloudToggle").textContent="Read aloud";return}
+ if(window.speechSynthesis.speaking){window.speechSynthesis.cancel();document.getElementById("readAloudToggle").textContent="Start";document.getElementById("readAloudToggle").setAttribute("aria-pressed","false");return}
  const active=document.querySelector(".page.active");if(!active)return;
  const text=[...active.querySelectorAll("h1,h2,h3,p,li,button")].map(el=>el.innerText).filter(Boolean).join(". ").slice(0,12000);
- const utterance=new SpeechSynthesisUtterance(text);utterance.rate=0.92;utterance.onend=()=>document.getElementById("readAloudToggle").textContent="Read aloud";
- utterance.onerror=()=>document.getElementById("readAloudToggle").textContent="Read aloud";
- document.getElementById("readAloudToggle").textContent="Stop reading";window.speechSynthesis.speak(utterance);
+ const utterance=new SpeechSynthesisUtterance(text);utterance.rate=0.92;utterance.onend=()=>document.getElementById("readAloudToggle").textContent="Start";document.getElementById("readAloudToggle").setAttribute("aria-pressed","false");
+ utterance.onerror=()=>document.getElementById("readAloudToggle").textContent="Start";document.getElementById("readAloudToggle").setAttribute("aria-pressed","false");
+ document.getElementById("readAloudToggle").textContent="Stop";document.getElementById("readAloudToggle").setAttribute("aria-pressed","true");window.speechSynthesis.speak(utterance);
 });
 renderPortfolio();
 
